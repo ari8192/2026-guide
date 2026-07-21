@@ -1,0 +1,532 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   リセットCSS・画像・全体の基本設定（変更なし）
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+body {
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  line-height: 1.6;
+  color: #333333;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   スマホサイズ（デフォルトスタイル）
+   ========================================================================== */
+
+/* ヘッダー */
+.site-header {
+  background-color: #d9eef5;
+  color: #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 1rem;
+}
+
+.logo {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   右上メニュー（オーバーレイ）スタイル：正円＆位置固定版
+   ========================================================================== */
+.overlay-menu {
+  position: fixed;
+  /* ★完全な正円（スマホ用：550px） */
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+  background-color: #cbe7fc;
+  box-shadow: -10px 10px 30px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+
+  /* ★右上にはみ出させて配置（画面の角をきれいなアールで覆う） */
+  top: -100px;
+  right: -100px;
+
+  /* 斜めの開閉アニメーション（中心を右上端に） */
+  transform-origin: calc(100% - 100px) 100px;
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform 0.45s cubic-bezier(0.25, 1, 0.5, 1),
+    opacity 0.35s ease;
+}
+
+/* メニューが開いたとき */
+.overlay-menu.open {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ★閉じるボタン（×）：画面の右上端（赤×の位置）に固定 */
+.close-btn {
+  position: absolute;
+  top: 120px; /* 画面の最上部からの距離を固定 */
+  right: 120px; /* 画面の最右部からの距離を固定 */
+  font-size: 3rem;
+  font-weight: 300;
+  color: #000000;
+  cursor: pointer;
+  line-height: 1;
+  z-index: 10000;
+}
+
+/* ★リンク全体の配置（赤四角の位置）：×ボタンの下にきれいに収める */
+.menu-links {
+  position: absolute;
+
+  /* ★少し上に引き上げ、少し右に寄せました */
+  top: 150px;
+  right: 135px;
+
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+  text-align: center;
+}
+
+.menu-links a {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #001f54;
+  line-height: 1.4;
+  transition: color 0.2s ease;
+  display: block;
+}
+
+.menu-links a:hover {
+  color: #f6ffb2;
+}
+
+/* （中略：その他のボタンやメインビジュアルはそのまま） */
+
+.menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+}
+
+.menu-btn span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #000;
+}
+
+.site-main {
+  flex: 1;
+}
+
+/* ==========================================================================
+   メインレイアウト（共通＆スマホ）
+   ========================================================================== */
+.detail-page {
+  padding: 4.5rem 1rem 7rem;
+  width: 100%;
+  max-width: 100vw;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+}
+
+.detail-intro {
+  width: 100%;
+  text-align: center;
+}
+
+.detail-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.05em;
+}
+
+.detail-lead-text {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #333333;
+}
+
+/* ==========================================================================
+   道具セクション＆グリッド
+   ========================================================================== */
+.tools-section {
+  width: 100%;
+  max-width: 450px;
+  /* ★ここが効いているので、ここを基準に全体が大きくなります */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  /* 縦の隙間を少し広げてゆったりと */
+}
+
+.tool-row {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  /* アイコン一覧と詳細カードの間の隙間 */
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #1a6d96;
+  margin-bottom: 0.5rem;
+}
+
+/* アイコンを並べるグリッド（スマホは流動的かつ綺麗に配置） */
+.items-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  gap: 0;
+  width: 100%;
+  padding: 0;
+  /* ★左右の無駄な余白を無くして横幅いっぱいに使う */
+}
+
+/* 個々の丸ボタンボタン */
+.item-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  width: auto;
+  /* 幅を自動にして均等配置に任せる */
+  flex: 1;
+  /* すべて均等な幅で引き伸ばす */
+  min-width: 0;
+  /* 文字がはみ出たときに枠を壊さないお守り */
+  transition: transform 0.2s ease;
+}
+
+.grid-5 .item-node {
+  width: auto;
+}
+
+.circle-image {
+  width: 54px;
+  height: 54px;
+  background-color: #d9d9d9;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+/* 選択された状態（ライトブルーのフチ） */
+.item-node.active .circle-image,
+.item-node:hover .circle-image {
+  border-color: #5edbf7;
+  box-shadow: 0 0 8px rgba(94, 219, 247, 0.6);
+}
+
+.item-label {
+  font-size: 0.7rem;
+  white-space: nowrap;
+  color: #333;
+  text-align: center;
+  /* transform: scale(0.9); は削除 */
+}
+
+/* ==========================================================================
+   中央：詳細パネル
+   ========================================================================== */
+.detail-panel {
+  width: 100%;
+  background-color: #ffffff;
+  border: 2px solid #a3f3fc;
+  border-radius: 16px;
+  padding: 1.5rem 1rem;
+  /* ★上下の余白を少し広げてふっくらと */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.panel-image-wrapper {
+  flex-shrink: 0;
+}
+
+.panel-placeholder {
+  width: 130px;
+  height: 105px;
+  background-color: #888888;
+  border-radius: 4px;
+}
+
+.panel-content {
+  flex: 1;
+  text-align: left;
+}
+
+.panel-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+}
+
+.panel-desc {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #555;
+}
+
+/* ==========================================================================
+   ページ下部ナビゲーション
+   ========================================================================== */
+.page-navigation {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.nav-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 110px;
+  height: 40px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 400;
+  /* 通常時は細字 */
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary {
+  background-color: #eaf7fa;
+  border: 2px solid #98b8d5;
+  color: #333333;
+}
+
+.btn-primary {
+  background-color: #eaf7fa;
+  border: 2px solid #98b8d5;
+  color: #333333;
+}
+
+/* ボタンホバー時：お気に入りの「太字変化＆浮き上がり」 */
+.nav-btn:hover {
+  transform: translateY(-2px);
+  font-weight: 700;
+  /* ホバーで太字に */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.btn-secondary:hover {
+  background-color: #7ea9d1;
+  border: 2px solid #eaf7fa;
+  color: #fdffed;
+}
+
+.btn-primary:hover {
+  background-color: #7ea9d1;
+  border: 2px solid #eaf7fa;
+  color: #fdffed;
+}
+
+/* ==========================================================================
+   【PC版】レスポンシブ調整（全体拡大＆横幅拡張版）
+   ========================================================================== */
+@media (min-width: 768px) {
+  .overlay-menu {
+    /* ★PC版：完全に歪みのない大きな「正円」に統一 */
+    width: 850px;
+    height: 850px;
+    border-radius: 50%;
+
+    /* ★右上にはみ出させる量を固定 */
+    top: -150px;
+    right: -150px;
+
+    /* アニメーションの起点をPC用に修正 */
+    transform-origin: calc(100% - 150px) 150px;
+
+    /* レイアウトのバグを防ぐため余白設定をクリア */
+    padding: 0;
+  }
+
+  /* ★PC版閉じるボタン：画面の右上端（赤×のジャスト位置） */
+  .close-btn {
+    top: 185px; /* 画面の右上角にぴったり綺麗に見える位置 */
+    right: 185px;
+    font-size: 4.5rem;
+  }
+
+  /* ★PC版リンク配置（赤四角の位置）：右側に縦長の四角形として綺麗に固定 */
+  .menu-links {
+    /* ★前回の top: 240px / right: 280px から、右上へジャスト移動 */
+    top: 200px; /* 上に40pxアップ */
+    right: 220px; /* 右に60pxキープ（円の丸みに綺麗に沿う位置） */
+
+    width: 460px;
+    gap: 3.2rem;
+    margin-top: 0;
+  }
+
+  .menu-links a {
+    font-size: 1.55rem;
+  }
+
+  .detail-page {
+    padding: 7rem 2rem 10rem;
+    width: 100%;
+    max-width: 1260px;
+    /* ★トップページ（1100px）と同じ横幅に揃えます */
+    margin: 0 auto;
+    gap: 7.5rem;
+  }
+
+  .detail-title {
+    font-size: 2.2rem;
+    margin-bottom: 5.5rem;
+  }
+
+  .detail-lead-text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+  }
+
+  .tools-section {
+    width: 100%;
+    max-width: 960px;
+    gap: 3.5rem;
+  }
+
+  /* ★PC版の行ごとの余白調整 */
+  .tool-row {
+    width: 100%;
+    gap: 3.5rem;
+    /* アイコン一覧とカードの間の隙間を広げてリッチに */
+  }
+
+  .section-subtitle {
+    font-size: 1.6rem;
+    /* サブタイトルを強調 */
+    padding-bottom: 0.8rem;
+  }
+
+  /* PC版：アイコンを一列に美しく並べる */
+  .items-grid {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 0;
+    padding: 0 2rem;
+  }
+
+  .item-node {
+    width: auto;
+    flex: 1;
+    transition: transform 0.2s ease;
+  }
+
+  .item-node:hover {
+    transform: translateY(-3px);
+    /* ホバー時にちょっと浮く遊び心 */
+  }
+
+  .circle-image {
+    width: 76px;
+    /* ★アイコンの円を 65px → 76px に拡大 */
+    height: 76px;
+  }
+
+  .item-label {
+    font-size: 0.9rem;
+    /* 文字も少し拡大 */
+    font-weight: 500;
+  }
+
+  /* PC版：詳細表示パネルの拡大 */
+  .detail-panel {
+    max-width: 780px;
+    /* ★パネルの横幅を 620px → 780px にガッツリ拡大 */
+    padding: 2.5rem 3rem;
+    /* 内側の余白も広げてリッチに */
+    gap: 3.5rem;
+    border-radius: 24px;
+    border-width: 3px;
+    /* 枠線も少し太くして存在感をアップ */
+  }
+
+  .panel-placeholder {
+    width: 260px;
+    /* ★画像サイズを 210px → 260px に拡大 */
+    height: 165px;
+  }
+
+  .panel-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .panel-title {
+    font-size: 1.6rem;
+    /* タイトルを大きく */
+    margin-bottom: 1rem;
+  }
+
+  .panel-desc {
+    font-size: 1rem;
+    /* 説明文を読みやすく */
+    line-height: 1.6;
+  }
+
+  /* ナビボタン */
+  .page-navigation {
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+
+  .nav-btn {
+    width: 140px;
+    height: 45px;
+    font-size: 1rem;
+  }
+}

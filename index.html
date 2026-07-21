@@ -3,25 +3,171 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TOP</title>
-    <link rel="stylesheet" href="top.css" />
+    <title>はじめてのUVレジン</title>
+    <link rel="stylesheet" href="css/top.css" />
   </head>
 
   <body>
-    <div class="container">
-      <header>
-        <h1>SITE TITLE</h1>
-      </header>
+    <header class="site-header">
+      <h1 class="logo">はじめてのUVレジン</h1>
 
-      <div class="menw-buttons">
-        <a href="rejinn.html">レジンってどんなもの？</a>
-        <a href="tigai.html">UVレジンと、2液性レジン (エポキシレジン)の違い</a>
-        <a href="syurui.html">UVレジン液の種類について</a>
-        <a href="dougu.html">制作に必要な道具</a>
-        <a href="tukurikata.html">基本の作り方</a>
-        <a href="">よくある失敗と対処法</a>
-        <a href="">まとめ</a>
-      </div>
-    </div>
+      <!-- 全ページ共通：オーバーレイ型円形メニュー -->
+      <nav class="overlay-menu" id="overlayMenu">
+        <!-- 閉じるボタン（×） -->
+        <button class="close-btn" id="closeMenuBtn" aria-label="メニューを閉じる">&times;</button>
+
+        <!-- メニューリンク一覧 -->
+        <ul class="menu-links">
+          <li><a href="rejinn.html">レジンってどんなもの？</a></li>
+          <li>
+            <a href="tigai.html">
+              UVレジンと、2液性レジン
+              <br />
+              (エポキシレジン)の違い
+            </a>
+          </li>
+          <li><a href="syurui.html">UVレジン液の種類について</a></li>
+          <li><a href="dougu.html">制作に必要な道具</a></li>
+          <li><a href="tukurikata.html">基本の作り方</a></li>
+          <li><a href="sipai.html">よくある失敗と対処法</a></li>
+        </ul>
+      </nav>
+
+      <button class="menu-btn" aria-label="メニュー">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <main class="site-main">
+      <section class="main-visual">
+        <div class="mv-text">
+          <h2>
+            〜好きを閉じ込める、
+            <br />
+            　初めてのハンドメイド〜
+          </h2>
+          <p>
+            UVレジンの基本から作り方まで
+            <br />
+            初心者向けに紹介します。
+          </p>
+        </div>
+        <div class="mv-image">
+          <img src="./images/main-visual.jpg" alt="UVレジンのイメージ写真" />
+        </div>
+      </section>
+
+      <section class="contents-section">
+        <div class="section-title">
+          <h2>CONTENTS</h2>
+        </div>
+
+        <div class="card-container">
+          <a href="rejinn.html" class="card">
+            <div class="card-img">
+              <img src="./images/content1.jpg" alt="レジンってどんなもの？" />
+            </div>
+            <div class="card-body">
+              <p>レジンってどんなもの？</p>
+              <span class="arrow">→</span>
+            </div>
+          </a>
+
+          <a href="tigai.html" class="card">
+            <div class="card-img">
+              <img src="./images/content2.jpg" alt="UVレジンと、2液性レジンの違い" />
+            </div>
+            <div class="card-body">
+              <p>UVレジンと、2液性レジンの違い</p>
+              <span class="arrow">→</span>
+            </div>
+          </a>
+
+          <a href="syurui.html" class="card">
+            <div class="card-img">
+              <img src="./images/content3.jpg" alt="UVレジン液の種類について" />
+            </div>
+            <div class="card-body">
+              <p>UVレジン液の種類について</p>
+              <span class="arrow">→</span>
+            </div>
+          </a>
+
+          <a href="dougu.html" class="card">
+            <div class="card-img">
+              <img src="./images/content4.jpg" alt="制作に必要な道具" />
+            </div>
+            <div class="card-body">
+              <p>制作に必要な道具</p>
+              <span class="arrow">→</span>
+            </div>
+          </a>
+
+          <a href="tukurikata.html" class="card">
+            <div class="card-img">
+              <img src="./images/content5.jpg" alt="基本の作り方" />
+            </div>
+            <div class="card-body">
+              <p>基本の作り方</p>
+              <span class="arrow">→</span>
+            </div>
+          </a>
+
+          <a href="sipai.html" class="card">
+            <div class="card-img">
+              <img src="./images/content6.jpg" alt="よくある失敗と対処法" />
+            </div>
+            <div class="card-body">
+              <p>よくある失敗と対処法</p>
+              <span class="arrow">→</span>
+            </div>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- ★ここにJavaScriptをまるごと追加します！ -->
+    <script>
+      // メニュー開閉の制御
+      const menuBtn = document.querySelector(".menu-btn"); // 右上の三本線ボタン
+      const closeMenuBtn = document.getElementById("closeMenuBtn"); // メニュー内の×ボタン
+      const overlayMenu = document.getElementById("overlayMenu"); // メニュー本体
+
+      // 三本線ボタンを押したらメニューを開く
+      menuBtn.addEventListener("click", () => {
+        overlayMenu.classList.add("open");
+      });
+
+      // ×ボタンを押したらメニューを閉じる
+      closeMenuBtn.addEventListener("click", () => {
+        overlayMenu.classList.remove("open");
+      });
+
+      // リンクを押したときにもメニューを閉じる
+      document.querySelectorAll(".menu-links a").forEach((link) => {
+        link.addEventListener("click", () => {
+          overlayMenu.classList.remove("open");
+        });
+      });
+
+      document.addEventListener("click", (event) => {
+        const overlayMenu = document.querySelector(".overlay-menu");
+        const menuBtn = document.querySelector(".menu-btn"); // ハンバーガーボタンのクラス名
+
+        // メニューが現在開いている（openクラスがある）ときだけ処理する
+        if (overlayMenu.classList.contains("open")) {
+          /*
+      クリックされた場所が「メニュー本体」でもなく、
+      「メニューを開くボタン（とその中身）」でもない場合、メニューを閉じる
+    */
+          if (!overlayMenu.contains(event.target) && !menuBtn.contains(event.target)) {
+            overlayMenu.classList.remove("open");
+            // もし元々のコードで他の連動するアニメーション（ボタンの形変化など）があれば、ここに記述
+          }
+        }
+      });
+    </script>
   </body>
 </html>

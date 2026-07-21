@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>制作に必要な道具 | はじめてのUVレジン</title>
+    <link rel="stylesheet" href="css/dougu.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <h1 class="logo"><a href="index.html" style="color: inherit">はじめてのUVレジン</a></h1>
+
+      <!-- 全ページ共通：オーバーレイ型円形メニュー -->
+      <nav class="overlay-menu" id="overlayMenu">
+        <!-- 閉じるボタン（×） -->
+        <button class="close-btn" id="closeMenuBtn" aria-label="メニューを閉じる">&times;</button>
+
+        <!-- メニューリンク一覧 -->
+        <ul class="menu-links">
+          <li><a href="index.html">TOP</a></li>
+          <li><a href="rejinn.html">レジンってどんなもの？</a></li>
+          <li>
+            <a href="tigai.html">
+              UVレジンと、2液性レジン
+              <br />
+              (エポキシレジン)の違い
+            </a>
+          </li>
+          <li><a href="syurui.html">UVレジン液の種類について</a></li>
+          <li><a href="tukurikata.html">基本の作り方</a></li>
+          <li><a href="sipai.html">よくある失敗と対処法</a></li>
+        </ul>
+      </nav>
+
+      <button class="menu-btn" aria-label="メニュー">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <main class="site-main">
+      <article class="detail-page">
+        <!-- 導入部分 -->
+        <section class="detail-intro">
+          <h2 class="detail-title">制作に必要な道具</h2>
+          <p class="detail-lead-text">
+            UVレジンを始めるには、いくつかの道具が必要になります。
+            <br />
+            最近では100円ショップでも、手に入るものが多く初心者でも
+            <br />
+            気軽に始めることができます。
+          </p>
+        </section>
+
+        <!-- セクション：必要な道具 -->
+        <section class="tools-section">
+          <h3 class="section-subtitle">必要な道具</h3>
+
+          <!-- 【上段行】 -->
+          <div class="tool-row" id="row-upper">
+            <div class="items-grid grid-5">
+              <button class="item-node active" data-id="uv-light">
+                <div class="circle-image"></div>
+                <span class="item-label">・UVライト</span>
+              </button>
+              <button class="item-node" data-id="resin-liquid">
+                <div class="circle-image"></div>
+                <span class="item-label">・レジン液</span>
+              </button>
+              <button class="item-node" data-id="silicone-mold">
+                <div class="circle-image"></div>
+                <span class="item-label">・シリコンモールド</span>
+              </button>
+              <button class="item-node" data-id="colorant">
+                <div class="circle-image"></div>
+                <span class="item-label">・着色剤</span>
+              </button>
+              <button class="item-node" data-id="parts">
+                <div class="circle-image"></div>
+                <span class="item-label">・封入パーツ</span>
+              </button>
+            </div>
+            <!-- JavaScriptによってここに詳細カードが移動してきます -->
+          </div>
+
+          <!-- 【下段行】 -->
+          <div class="tool-row" id="row-lower">
+            <div class="items-grid grid-4">
+              <button class="item-node" data-id="tweezers">
+                <div class="circle-image"></div>
+                <span class="item-label">・ピンセット</span>
+              </button>
+              <button class="item-node" data-id="stick">
+                <div class="circle-image"></div>
+                <span class="item-label">・調色スティック</span>
+              </button>
+              <button class="item-node" data-id="palette">
+                <div class="circle-image"></div>
+                <span class="item-label">・調色パレット</span>
+              </button>
+              <button class="item-node" data-id="file">
+                <div class="circle-image"></div>
+                <span class="item-label">・ヤスリ</span>
+              </button>
+            </div>
+            <!-- JavaScriptによってここに詳細カードが移動してきます -->
+          </div>
+        </section>
+
+        <!-- セクション：あると便利な道具 -->
+        <section class="tools-section">
+          <h3 class="section-subtitle">あると便利な道具</h3>
+          <div class="tool-row" id="row-convenient">
+            <div class="items-grid grid-convenient">
+              <button class="item-node" data-id="emboss-heater">
+                <div class="circle-image"></div>
+                <span class="item-label">・エンボスヒーター</span>
+              </button>
+              <button class="item-node" data-id="coating-liquid">
+                <div class="circle-image"></div>
+                <span class="item-label">・コーティング液</span>
+              </button>
+            </div>
+            <!-- JavaScriptによってここに詳細カードが移動してきます -->
+          </div>
+        </section>
+
+        <!-- 共通詳細カード本体（初期状態ではHTML上のどこにも属さず、JSで配置します） -->
+        <div class="detail-panel" id="detailPanel" style="display: none">
+          <div class="panel-image-wrapper">
+            <div class="panel-placeholder" id="panelImage"></div>
+          </div>
+          <div class="panel-content">
+            <h4 class="panel-title" id="panelTitle">UVライト</h4>
+            <p class="panel-desc" id="panelDesc">レジンを硬化させるために使います。</p>
+          </div>
+        </div>
+
+        <!-- ページ下部共通ナビゲーション -->
+        <div class="page-navigation">
+          <a href="syurui.html" class="nav-btn btn-secondary">&larr; 戻る</a>
+          <a href="index.html" class="nav-btn btn-secondary">TOPへ</a>
+          <a href="tukurikata.html" class="nav-btn btn-primary">次へ &rarr;</a>
+        </div>
+      </article>
+    </main>
+
+    <!-- 道具切り替えスクリプト -->
+    <script>
+      const toolData = {
+        "uv-light": { title: "UVライト", desc: "レジンを硬化させるために使います。" },
+        "resin-liquid": { title: "レジン液", desc: "作品の主役となる紫外線硬化樹脂液です。" },
+        "silicone-mold": { title: "シリコンモールド", desc: "レジン液を流し込んで型を形作るシリコン製の型です。" },
+        colorant: { title: "着色剤", desc: "レジン液に混ぜて好みの色をつけるための専用液体・粉末です。" },
+        parts: { title: "封入パーツ", desc: "レジンの中に閉じ込めるラメやドライフラワーなどの飾りです。" },
+        tweezers: { title: "ピンセット", desc: "細かいパーツを狙った場所に配置する時に必須の道具です。" },
+        stick: { title: "調色スティック", desc: "レジン液と着色剤を混ぜたり、気泡を潰したりする棒です。" },
+        palette: { title: "調色パレット", desc: "レジン液に色を混ぜ合わせるためのシリコン製の小皿です。" },
+        file: { title: "ヤスリ", desc: "硬化後にバリ（はみ出たトゲ）を削って滑らかに仕上げます。" },
+        "emboss-heater": {
+          title: "エンボスヒーター",
+          desc: "レジン液に熱を当てることで、細かな気泡を綺麗に飛ばせる道具です。",
+        },
+        "coating-liquid": {
+          title: "コーティング液",
+          desc: "作品の仕上げに塗り、ツヤ出しや表面のベタつきを抑える液です。",
+        },
+      };
+
+      const nodes = document.querySelectorAll(".item-node");
+      const panel = document.getElementById("detailPanel");
+      const panelTitle = document.getElementById("panelTitle");
+      const panelDesc = document.getElementById("panelDesc");
+
+      nodes.forEach((node) => {
+        node.addEventListener("click", () => {
+          nodes.forEach((n) => n.classList.remove("active"));
+          node.classList.add("active");
+
+          const id = node.getAttribute("data-id");
+          if (toolData[id]) {
+            panelTitle.textContent = toolData[id].title;
+            panelDesc.textContent = toolData[id].desc;
+
+            // ★クリックされたアイコンが所属している「行（.tool-row）」を取得
+            const parentRow = node.closest(".tool-row");
+
+            // その行の末尾に詳細カードを引っ越しさせる（自動で元の位置からは消えて間隔が詰まります）
+            parentRow.appendChild(panel);
+            panel.style.display = "flex"; // パネルを表示
+          }
+        });
+      });
+
+      // 初期起動時につねに「UVライト（上段）」の下にカードを表示しておく処理
+      window.addEventListener("DOMContentLoaded", () => {
+        const defaultNode = document.querySelector('[data-id="uv-light"]');
+        if (defaultNode) {
+          const parentRow = defaultNode.closest(".tool-row");
+          parentRow.appendChild(panel);
+          panel.style.display = "flex";
+        }
+      });
+
+      // メニュー開閉の制御
+      const menuBtn = document.querySelector(".menu-btn"); // 右上の三本線ボタン
+      const closeMenuBtn = document.getElementById("closeMenuBtn"); // メニュー内の×ボタン
+      const overlayMenu = document.getElementById("overlayMenu"); // メニュー本体
+
+      // 三本線ボタンを押したらメニューを開く
+      menuBtn.addEventListener("click", () => {
+        overlayMenu.classList.add("open");
+      });
+
+      // ×ボタンを押したらメニューを閉じる
+      closeMenuBtn.addEventListener("click", () => {
+        overlayMenu.classList.remove("open");
+      });
+
+      // リンクを押したときにもメニューを閉じる
+      document.querySelectorAll(".menu-links a").forEach((link) => {
+        link.addEventListener("click", () => {
+          overlayMenu.classList.remove("open");
+        });
+      });
+
+      document.addEventListener("click", (event) => {
+        const overlayMenu = document.querySelector(".overlay-menu");
+        const menuBtn = document.querySelector(".menu-btn"); // ハンバーガーボタンのクラス名
+
+        // メニューが現在開いている（openクラスがある）ときだけ処理する
+        if (overlayMenu.classList.contains("open")) {
+          /*
+      クリックされた場所が「メニュー本体」でもなく、
+      「メニューを開くボタン（とその中身）」でもない場合、メニューを閉じる
+    */
+          if (!overlayMenu.contains(event.target) && !menuBtn.contains(event.target)) {
+            overlayMenu.classList.remove("open");
+            // もし元々のコードで他の連動するアニメーション（ボタンの形変化など）があれば、ここに記述
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

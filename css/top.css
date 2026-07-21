@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+/* ==========================================================================
+   リセットCSS・画像・全体の基本設定（変更なし）
+   ========================================================================== */
 * {
   margin: 0;
   padding: 0;
@@ -11,22 +14,433 @@
   box-sizing: border-box;
 }
 
-html {
-  font-size: 62.5%;
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-/* body{} */
-
-.container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto;
-  row-gap: 16px;
-  column-gap: 16px;
-  margin: 5%;
+body {
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  line-height: 1.6;
+  color: #333333;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-header {
-  grid-column: 1 / -1;
-  grid-row: 1;
+/* ==========================================================================
+   スマホサイズ（デフォルトスタイル）
+   ========================================================================== */
+
+/* ヘッダー */
+.site-header {
+  background-color: #d9eef5;
+  color: #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 1rem;
+}
+
+.logo {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   右上メニュー（オーバーレイ）スタイル：正円＆位置固定版
+   ========================================================================== */
+.overlay-menu {
+  position: fixed;
+  /* ★完全な正円（スマホ用：550px） */
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+  background-color: #cbe7fc;
+  box-shadow: -10px 10px 30px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+
+  /* ★右上にはみ出させて配置（画面の角をきれいなアールで覆う） */
+  top: -100px;
+  right: -100px;
+
+  /* 斜めの開閉アニメーション（中心を右上端に） */
+  transform-origin: calc(100% - 100px) 100px;
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform 0.45s cubic-bezier(0.25, 1, 0.5, 1),
+    opacity 0.35s ease;
+}
+
+/* メニューが開いたとき */
+.overlay-menu.open {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ★閉じるボタン（×）：画面の右上端（赤×の位置）に固定 */
+.close-btn {
+  position: absolute;
+  top: 120px; /* 画面の最上部からの距離を固定 */
+  right: 120px; /* 画面の最右部からの距離を固定 */
+  font-size: 3rem;
+  font-weight: 300;
+  color: #000000;
+  cursor: pointer;
+  line-height: 1;
+  z-index: 10000;
+}
+
+/* ★リンク全体の配置（赤四角の位置）：×ボタンの下にきれいに収める */
+.menu-links {
+  position: absolute;
+
+  /* ★少し上に引き上げ、少し右に寄せました */
+  top: 150px;
+  right: 135px;
+
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+  text-align: center;
+}
+
+.menu-links a {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #001f54;
+  line-height: 1.4;
+  transition: color 0.2s ease;
+  display: block;
+}
+
+.menu-links a:hover {
+  color: #f6ffb2;
+}
+
+/* （中略：その他のボタンやメインビジュアルはそのまま） */
+
+.menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+}
+
+.menu-btn span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #000;
+}
+
+.site-main {
+  flex: 1;
+}
+
+/* ★スマホ用：メインビジュアル（テキストを中央揃えに変更） */
+.main-visual {
+  padding: 2.5rem 1.5rem;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: center;
+  /* テキスト全体を中央揃えに */
+}
+
+.mv-text h2 {
+  font-size: 1.4rem;
+  line-height: 1.4;
+  margin-bottom: 0.8rem;
+  margin-top: 25px;
+}
+
+.mv-text p {
+  font-size: 1rem;
+  color: #666666;
+  margin-bottom: 20px;
+  margin-top: 25px;
+}
+
+.mv-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-color: #d9d9d9;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* コンテンツセクション */
+.contents-section {
+  padding: 3rem 1.5rem;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.section-title::before,
+.section-title::after {
+  content: "";
+  flex-grow: 1;
+  height: 1px;
+  background-color: #000;
+  max-width: 60px;
+}
+
+.section-title h2 {
+  font-size: 1.6rem;
+  letter-spacing: 0.1em;
+  font-weight: normal;
+}
+
+/* スマホ用：カードコンテナ */
+.card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* スマホ用：横長カード */
+.card {
+  display: flex;
+  background-color: #eaf7fa;
+  /* 通常時の背景色（薄い水色） */
+  border: 2px solid #00449159;
+  border-radius: 12px;
+  overflow: hidden;
+  color: #333333;
+
+  /* 👇 background-color もふわっと変化させる対象に含めます */
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background-color 0.3s ease;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
+/* ホバー（マウスオーバー）した時のアニメーション設定 */
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+  /* 👇 スマホ版でホバーした時に、カード全体の背景色を少し濃い水色に変える */
+  background-color: #cee3ff;
+}
+
+/* ★ホバー時に、カード内の文字（p）と矢印（.arrow）の両方を太くする */
+.card:hover .card-body p {
+  font-weight: 700;
+  /* ★ここでホバー後に太字（Bold）にします */
+}
+
+.card:hover .arrow {
+  font-weight: 900;
+}
+
+.card-img {
+  width: 100px;
+  min-width: 100px;
+  background-color: #d9d9d9;
+}
+
+.card-body {
+  flex: 1;
+  padding: 1.2rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-body p {
+  font-size: 0.95rem;
+  font-weight: 400;
+  /* ★太字（bold）から通常の太さに変更 */
+  padding-right: 0.5rem;
+  transition:
+    font-weight 0.3s ease,
+    color 0.3s ease;
+  /* 変化をふわっと */
+}
+
+.arrow {
+  font-size: 1.2rem;
+  font-weight: 400;
+  /* ★矢印も通常の太さに */
+  transition:
+    font-weight 0.3s ease,
+    color 0.3s ease;
+}
+
+/* ==========================================================================
+   デスクトップサイズ（画面横幅が 768px 以上の場合に適用）
+   ========================================================================== */
+@media (min-width: 768px) {
+  .overlay-menu {
+    /* ★PC版：完全に歪みのない大きな「正円」に統一 */
+    width: 850px;
+    height: 850px;
+    border-radius: 50%;
+
+    /* ★右上にはみ出させる量を固定 */
+    top: -150px;
+    right: -150px;
+
+    /* アニメーションの起点をPC用に修正 */
+    transform-origin: calc(100% - 150px) 150px;
+
+    /* レイアウトのバグを防ぐため余白設定をクリア */
+    padding: 0;
+  }
+
+  /* ★PC版閉じるボタン：画面の右上端（赤×のジャスト位置） */
+  .close-btn {
+    top: 185px; /* 画面の右上角にぴったり綺麗に見える位置 */
+    right: 185px;
+    font-size: 4.5rem;
+  }
+
+  /* ★PC版リンク配置（赤四角の位置）：右側に縦長の四角形として綺麗に固定 */
+  .menu-links {
+    /* ★前回の top: 240px / right: 280px から、右上へジャスト移動 */
+    top: 200px; /* 上に40pxアップ */
+    right: 220px; /* 右に60pxキープ（円の丸みに綺麗に沿う位置） */
+
+    width: 460px;
+    gap: 3.2rem;
+    margin-top: 0;
+  }
+
+  .menu-links a {
+    font-size: 1.55rem;
+  }
+
+  /* 左右の最大幅は1280px */
+  .main-visual,
+  .contents-section {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  /* ★メインビジュアル：文字と画像の間隔を縮めるための調整 */
+  .main-visual {
+    flex-direction: row;
+    justify-content: center;
+    /* ★両端ではなく中央寄りに配置 */
+    align-items: center;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    gap: 1rem;
+    /* ★ここの数値を小さくすると、さらに文字と画像が近づきます（お好みで4remなどにしてもOKです） */
+    text-align: left;
+  }
+
+  /* 文字エリアが広がりすぎないように最大幅を制限して、右の画像に近づけます */
+  .mv-text {
+    flex: initial;
+    /* ★幅を自動伸縮から固定的な挙動に変更 */
+    width: 500px;
+    /* ★文字エリアの横幅を固定 */
+  }
+
+  .mv-text h2 {
+    font-size: 2.2rem;
+    line-height: 1.6;
+  }
+
+  .mv-text p {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    margin-left: 40px;
+  }
+
+  .mv-image {
+    width: 500px;
+    height: 350px;
+    flex-shrink: 0;
+    /* 画像が勝手に縮まないように固定 */
+  }
+
+  /* ★CONTENTSセクション全体の上下の余白をさらに広く（3rem → 7rem に大幅アップ） */
+  .contents-section {
+    padding-top: 5rem;
+    /* ★CONTENTSの上の余白を広げました */
+    padding-bottom: 9rem;
+    /* ★CONTENTSの下の余白を広げました */
+  }
+
+  /* CONTENTSの見出しと、下のカードコンテナの隙間を広げる */
+  .section-title {
+    margin-bottom: 6rem;
+  }
+
+  .section-title::before,
+  .section-title::after {
+    max-width: 180px;
+  }
+
+  /* PC用：カードコンテナ */
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+
+  /* PC用：縦型カード */
+  .card {
+    flex-direction: column;
+    background-color: #eaf7fa;
+    /* 通常時の背景色（薄い水色） */
+    border: 2px solid #00449159;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .card-img {
+    width: 100%;
+    height: 220px;
+  }
+
+  .card-body {
+    background-color: #eaf6fa;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 1.5rem;
+    padding: 2.5rem 1.8rem;
+  }
+
+  .card-body p {
+    font-size: 1.1rem;
+    padding-right: 0;
+    line-height: 1.5;
+    font-weight: 400;
+    /* ★通常時は細めにしておく */
+  }
+
+  /* PC版でホバーした時、下半分の水色エリア（.card-body）の背景色だけをふわっと変える */
+  .card:hover .card-body {
+    background-color: #cee3ff;
+    transition: background-color 0.3s ease;
+  }
 }

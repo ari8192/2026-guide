@@ -1,0 +1,724 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   【共通】リセットCSS & 全体基本設定
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+body {
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  line-height: 1.6;
+  color: #333333;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   【共通】ヘッダー
+   ========================================================================== */
+.site-header {
+  background-color: #d9eef5;
+  color: #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 1rem;
+}
+
+.logo {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   右上メニュー（オーバーレイ）スタイル：正円＆位置固定版
+   ========================================================================== */
+.overlay-menu {
+  position: fixed;
+  /* ★完全な正円（スマホ用：550px） */
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+  background-color: #cbe7fc;
+  box-shadow: -10px 10px 30px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+
+  /* ★右上にはみ出させて配置（画面の角をきれいなアールで覆う） */
+  top: -100px;
+  right: -100px;
+
+  /* 斜めの開閉アニメーション（中心を右上端に） */
+  transform-origin: calc(100% - 100px) 100px;
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform 0.45s cubic-bezier(0.25, 1, 0.5, 1),
+    opacity 0.35s ease;
+}
+
+/* メニューが開いたとき */
+.overlay-menu.open {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ★閉じるボタン（×）：画面の右上端（赤×の位置）に固定 */
+.close-btn {
+  position: absolute;
+  top: 120px; /* 画面の最上部からの距離を固定 */
+  right: 120px; /* 画面の最右部からの距離を固定 */
+  font-size: 3rem;
+  font-weight: 300;
+  color: #000000;
+  cursor: pointer;
+  line-height: 1;
+  z-index: 10000;
+}
+
+/* ★リンク全体の配置（赤四角の位置）：×ボタンの下にきれいに収める */
+.menu-links {
+  position: absolute;
+
+  /* ★少し上に引き上げ、少し右に寄せました */
+  top: 150px;
+  right: 135px;
+
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+  text-align: center;
+}
+
+.menu-links a {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #001f54;
+  line-height: 1.4;
+  transition: color 0.2s ease;
+  display: block;
+}
+
+.menu-links a:hover {
+  color: #f6ffb2;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+}
+
+.menu-btn span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #000;
+}
+
+.site-main {
+  flex: 1;
+}
+
+/* ==========================================================================
+   4ページ目：メインレイアウト
+   ========================================================================== */
+.detail-page {
+  padding: 4.5rem 0 7rem;
+  width: 100%;
+  max-width: 100vw;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rem;
+  overflow-x: hidden;
+}
+
+.detail-intro {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 0 !important;
+  padding: 0 1.5rem;
+}
+
+.detail-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 3rem;
+  letter-spacing: 0.05em;
+}
+
+.detail-lead-text {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #333333;
+  text-align: center;
+  padding: 0 0.5rem;
+}
+
+/* ==========================================================================
+   スライダー＆カードレイアウト（縦長・ジャストフィット版）
+   ========================================================================== */
+/* 1. 外枠：【超重要】ここでカード1枚分の横幅（例: 290px）をガチッと固定し、
+   はみ出たお隣を overflow: hidden で完全に非表示（マスク）にします */
+/* 外枠：ここを書き換えます */
+.slider-outer {
+  width: 290px;
+  /* 元の幅のまま固定 */
+  max-width: 90vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  position: relative;
+  margin: 0 auto;
+
+  /* ★追加：比率を完全に保ったまま、カード全体を一回り（1.15倍に）拡大します */
+  transform: scale(1.25);
+  /* 拡大した分、上下の他の要素（見出しやボタン）と被らないように余白を自動調整 */
+  margin-top: 4rem;
+  margin-bottom: 6rem;
+}
+
+/* 2. スライダー本体：外枠の幅（100%）に合わせ、隙間をゼロにします */
+.slider-container {
+  display: flex;
+  width: 100%;
+  padding: 4.5rem 0 0.5rem;
+  /* 上下の余白のみ */
+  gap: 0;
+  /* 隙間を完全にゼロにして計算ズレを徹底排除 */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  align-items: stretch;
+}
+
+.slider-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* 3. 1枚のカード：外枠（slider-outer）と同じ幅に設定して縦長をキープ */
+.card-item {
+  flex: 0 0 100%;
+  /* 親要素（290px）と全く同じ幅にする */
+  width: 100%;
+  margin: 0 !important;
+  padding: 0;
+  /* 隙間計算を狂わせないために 0 */
+
+  scroll-snap-align: center;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  height: auto;
+}
+
+/* 初心者におすすめ！の吹き出し */
+.recommend-bubble {
+  position: absolute;
+  top: -4.2rem;
+  left: 10px;
+  background-color: #e0f0f5;
+  color: #333;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: 2px solid #98b8d5;
+  font-size: 0.8rem;
+  font-weight: bold;
+  z-index: 15;
+  white-space: nowrap;
+}
+
+.recommend-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50px;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #98b8d5;
+}
+
+/* カードのタイトルバッジ（○○タイプ） */
+.card-badge {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0.6rem 1.5rem;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1rem;
+  border: 2px solid #98b8d5;
+  background-color: #eaf7fa;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  white-space: nowrap;
+  z-index: 10;
+}
+
+/* カードの本体（白い枠線） */
+.card-inner {
+  width: 100%;
+  border: 1px solid #999;
+  border-radius: 4px;
+  background-color: #ffffff;
+  padding: 2.5rem 0.8rem 1.5rem;
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  gap: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* プレースホルダーと特徴の行 */
+.card-top-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.8rem;
+  flex-grow: 0;
+  width: 100%;
+}
+
+.card-placeholder {
+  width: 85px;
+  height: 120px;
+  background-color: #d9d9d9;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+/* 特徴エリア */
+.card-spec {
+  flex: 1 1 0;
+  text-align: left;
+  border: 1px solid #333;
+  border-radius: 4px;
+  position: relative;
+  padding: 1.5rem 0.4rem 0.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 120px;
+}
+
+/* 各種共通タグの基本設定 */
+.spec-tag,
+.box-tag,
+.bottom-tag {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border: 1px solid #333;
+  margin-bottom: 0.5rem;
+}
+
+/* 特徴タグ */
+.card-spec .spec-tag {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  margin: 0;
+  white-space: nowrap;
+  background-color: #a3f3fc;
+}
+
+.card-spec p,
+.spec-box p {
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+/* メリット・デメリット行 */
+.card-middle-row {
+  display: flex;
+  gap: 0.6rem;
+  align-items: stretch;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spec-box {
+  flex: 1;
+  border: 1px solid #333;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+  padding: 1.5rem 0.3rem 0.8rem;
+}
+
+.spec-box p {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.spec-box .tag-merit,
+.spec-box .tag-demerit {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.tag-merit {
+  background-color: #c7f2f7;
+}
+
+.tag-demerit {
+  background-color: #cbd5f8;
+}
+
+/* 向いている作品 */
+.card-bottom-row {
+  width: 100%;
+  border: 1px solid #333;
+  border-radius: 4px;
+  text-align: center;
+  background-color: transparent;
+  margin-top: 0;
+  position: relative;
+  padding: 1.5rem 0.5rem 0.8rem;
+}
+
+.card-bottom-row .bottom-tag {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.bottom-tag {
+  background-color: #d2ecf5;
+}
+
+.bottom-desc {
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+/* おすすめの商品ボタン */
+.recommend-btn {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 180px;
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  border: 2px solid #98b8d5;
+  background-color: #eaf7fa;
+  color: #333;
+  font-size: 0.85rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.recommend-btn span {
+  color: #1a6d96;
+  font-size: 0.7rem;
+}
+
+.recommend-btn:hover {
+  background-color: #7ea9d1;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* スマホ用スライダーナビ */
+.slider-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 0;
+}
+
+.nav-arrow {
+  font-size: 1.2rem;
+  color: #1a6d96;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0.5rem;
+}
+
+.nav-dots {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #98b8d5;
+  background-color: #eaf7fa;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dot.active {
+  background-color: #7ea9d1;
+}
+
+/* ==========================================================================
+   ページ下部ナビゲーション
+   ========================================================================== */
+.page-navigation {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.nav-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 110px;
+  height: 40px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 400;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary {
+  background-color: #eaf7fa;
+  border: 2px solid #98b8d5;
+  color: #333333;
+}
+
+.btn-primary {
+  background-color: #eaf7fa;
+  border: 2px solid #98b8d5;
+  color: #333333;
+}
+
+.nav-btn:hover {
+  transform: translateY(-2px);
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.btn-secondary:hover {
+  background-color: #7ea9d1;
+  border: 2px solid #eaf7fa;
+  color: #fdffed;
+}
+
+.btn-primary:hover {
+  background-color: #7ea9d1;
+  border: 2px solid #eaf7fa;
+  color: #fdffed;
+}
+
+/* ==========================================================================
+   【PC版】調整
+   ========================================================================== */
+@media (min-width: 768px) {
+  .overlay-menu {
+    /* ★PC版：完全に歪みのない大きな「正円」に統一 */
+    width: 850px;
+    height: 850px;
+    border-radius: 50%;
+
+    /* ★右上にはみ出させる量を固定 */
+    top: -150px;
+    right: -150px;
+
+    /* アニメーションの起点をPC用に修正 */
+    transform-origin: calc(100% - 150px) 150px;
+
+    /* レイアウトのバグを防ぐため余白設定をクリア */
+    padding: 0;
+  }
+
+  /* ★PC版閉じるボタン：画面の右上端（赤×のジャスト位置） */
+  .close-btn {
+    top: 185px; /* 画面の右上角にぴったり綺麗に見える位置 */
+    right: 185px;
+    font-size: 4.5rem;
+  }
+
+  /* ★PC版リンク配置（赤四角の位置）：右側に縦長の四角形として綺麗に固定 */
+  .menu-links {
+    /* ★前回の top: 240px / right: 280px から、右上へジャスト移動 */
+    top: 200px; /* 上に40pxアップ */
+    right: 220px; /* 右に60pxキープ（円の丸みに綺麗に沿う位置） */
+
+    width: 460px;
+    gap: 3.2rem;
+    margin-top: 0;
+  }
+
+  .menu-links a {
+    font-size: 1.55rem;
+  }
+
+  .detail-page {
+    padding: 7rem 2rem 10rem;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    gap: 7.5rem;
+  }
+
+  .detail-title {
+    font-size: 2.2rem;
+    margin-bottom: 5.5rem;
+  }
+
+  .detail-lead-text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+  }
+
+  .slider-nav {
+    display: none;
+  }
+
+  .slider-outer {
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+
+    /* ★ここを追加：スマホ版でかけた拡大（scale）をPC版では完全に無しに戻します */
+    transform: none;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .slider-container {
+    display: flex;
+    width: 100%;
+    margin: 0;
+    justify-content: center;
+    gap: 2rem;
+    overflow-x: visible;
+    padding: 3rem 0;
+    align-items: stretch;
+  }
+
+  .slider-mask {
+    width: 100%;
+    overflow: visible;
+    /* PC版ではマスクを解除して3枚並べる */
+  }
+
+  .card-item {
+    flex: 0 1 420px;
+    width: auto;
+    margin: 0 !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 580px;
+  }
+
+  .card-inner {
+    padding: 3rem 1.8rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  .card-top-row {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .card-placeholder {
+    width: 100px;
+  }
+
+  .card-spec .spec-tag {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .card-spec {
+    text-align: left;
+    padding: 1.5rem 0.5rem 0.8rem;
+  }
+
+  .card-spec p,
+  .spec-box p {
+    font-size: 0.8rem;
+  }
+
+  .spec-box {
+    padding: 1.5rem 0.8rem 1rem;
+    gap: 0.8rem;
+  }
+
+  .card-bottom-row {
+    padding: 1.5rem 1rem 1rem;
+  }
+
+  .bottom-desc {
+    font-size: 0.8rem;
+  }
+
+  .page-navigation {
+    gap: 3rem;
+  }
+
+  .nav-btn {
+    width: 140px;
+    height: 45px;
+    font-size: 1rem;
+  }
+}
