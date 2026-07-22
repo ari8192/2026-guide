@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 /* ==========================================================================
-   リセットCSS・画像・全体の基本設定（変更なし）
+   【共通】リセットCSS & 全体基本設定
    ========================================================================== */
 * {
   margin: 0;
@@ -32,10 +32,8 @@ body {
 }
 
 /* ==========================================================================
-   スマホサイズ（デフォルトスタイル）
+   【共通】ヘッダー
    ========================================================================== */
-
-/* ヘッダー */
 .site-header {
   background-color: #d9eef5;
   color: #000;
@@ -86,8 +84,8 @@ body {
 /* ★閉じるボタン（×）：画面の右上端（赤×の位置）に固定 */
 .close-btn {
   position: absolute;
-  top: 120px; /* 画面の最上部からの距離を固定 */
-  right: 120px; /* 画面の最右部からの距離を固定 */
+  top: 120px;
+  right: 120px;
   font-size: 3rem;
   font-weight: 300;
   color: #000000;
@@ -155,25 +153,28 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4rem;
+  gap: 5rem;
 }
 
 .detail-intro {
   width: 100%;
   text-align: center;
+  margin-bottom: 0 !important;
 }
 
 .detail-title {
   font-size: 1.5rem;
   font-weight: bold;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
   letter-spacing: 0.05em;
 }
 
 .detail-lead-text {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   line-height: 1.7;
   color: #333333;
+  text-align: center;
+  padding: 0 0.5rem;
 }
 
 /* ==========================================================================
@@ -206,7 +207,6 @@ body {
   margin-bottom: 0.5rem;
 }
 
-/* アイコンを並べるグリッド（スマホは流動的かつ綺麗に配置） */
 .items-grid {
   display: flex;
   flex-wrap: nowrap;
@@ -216,7 +216,6 @@ body {
   padding: 0;
 }
 
-/* 個々の丸ボタンボタン */
 .item-node {
   display: flex;
   flex-direction: column;
@@ -229,20 +228,30 @@ body {
   transition: transform 0.2s ease;
 }
 
-.grid-5 .item-node {
-  width: auto;
-}
-
 .circle-image {
-  width: 54px;
-  height: 54px;
-  background-color: #d9d9d9;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  border: 2px solid transparent;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   transition: all 0.2s ease;
 }
 
-/* 選択された状態（ライトブルーのフチ） */
+.circle-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.item-node.active .circle-image {
+  outline: 5px solid #8bdbe8;
+  outline-offset: 0px;
+  border: none;
+  padding: 0;
+}
+
 .item-node.active .circle-image,
 .item-node:hover .circle-image {
   border-color: #5edbf7;
@@ -257,19 +266,19 @@ body {
 }
 
 /* ==========================================================================
-   中央：詳細パネル
+   中央：詳細パネル（スマホ版）
    ========================================================================== */
 .detail-panel {
-  width: 100%;
-  background-color: #ffffff;
-  border: 2px solid #a3f3fc;
-  border-radius: 16px;
-  padding: 1.5rem 1rem;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 5rem;
+  background-color: #ffffff;
+  border: 2px solid #befafe;
+  border-radius: 20px;
+  padding: 1.5rem;
 }
 
 .panel-image-wrapper {
@@ -277,15 +286,23 @@ body {
 }
 
 .panel-placeholder {
-  width: 130px;
+  /* スマホ版での画像サイズ */
+  width: 140px;
   height: 105px;
-  background-color: #888888;
-  border-radius: 4px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+#panelImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .panel-content {
   flex: 1;
-  text-align: left;
+  min-width: 0;
+  /* 文字崩れ防止 */
 }
 
 .panel-title {
@@ -323,31 +340,20 @@ body {
   transition: all 0.3s ease;
 }
 
-.btn-secondary {
-  background-color: #eaf7fa;
-  border: 2px solid #98b8d5;
-  color: #333333;
-}
-
+.btn-secondary,
 .btn-primary {
   background-color: #eaf7fa;
   border: 2px solid #98b8d5;
   color: #333333;
 }
 
-/* ボタンホバー時：お気に入りの「太字変化＆浮き上がり」 */
 .nav-btn:hover {
   transform: translateY(-2px);
   font-weight: 700;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
-.btn-secondary:hover {
-  background-color: #7ea9d1;
-  border: 2px solid #eaf7fa;
-  color: #fdffed;
-}
-
+.btn-secondary:hover,
 .btn-primary:hover {
   background-color: #7ea9d1;
   border: 2px solid #eaf7fa;
@@ -355,27 +361,23 @@ body {
 }
 
 /* ==========================================================================
-   【PC版】レスポンシブ調整（全体拡大＆横幅拡張版）
+   【PC版】レスポンシブ調整（1枚目のレイアウトバランスを保ちつつ画像を綺麗に拡大）
    ========================================================================== */
 @media (min-width: 768px) {
   .overlay-menu {
     width: 850px;
     height: 850px;
-    border-radius: 50%;
     top: -150px;
     right: -150px;
     transform-origin: calc(100% - 150px) 150px;
-    padding: 0;
   }
 
-  /* ★PC版閉じるボタン：画面の右上端 */
   .close-btn {
     top: 185px;
     right: 185px;
     font-size: 4.5rem;
   }
 
-  /* ★PC版リンク配置（赤四角の位置）：右側に縦長の四角形として綺麗に固定 */
   .menu-links {
     top: 200px;
     right: 220px;
@@ -408,14 +410,11 @@ body {
   }
 
   .tools-section {
-    width: 100%;
     max-width: 960px;
     gap: 3.5rem;
   }
 
-  /* ★PC版の行ごとの余白調整 */
   .tool-row {
-    width: 100%;
     gap: 3.5rem;
   }
 
@@ -424,18 +423,8 @@ body {
     padding-bottom: 0.8rem;
   }
 
-  /* PC版：アイコンを一列に美しく並べる */
   .items-grid {
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    gap: 0;
     padding: 0 2rem;
-  }
-
-  .item-node {
-    width: auto;
-    flex: 1;
-    transition: transform 0.2s ease;
   }
 
   .item-node:hover {
@@ -452,21 +441,28 @@ body {
     font-weight: 500;
   }
 
-  /* PC版：詳細表示パネルの拡大 */
   .detail-panel {
     max-width: 780px;
     padding: 2.5rem 3rem;
-    gap: 3.5rem;
+    gap: 3rem;
     border-radius: 24px;
     border-width: 3px;
   }
 
+  .panel-image-wrapper {
+    flex-shrink: 0;
+  }
+
   .panel-placeholder {
-    width: 260px;
-    height: 165px;
+    width: 300px;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
   }
 
   .panel-content {
+    flex: 1;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -474,7 +470,7 @@ body {
 
   .panel-title {
     font-size: 1.6rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
   }
 
   .panel-desc {
@@ -482,7 +478,6 @@ body {
     line-height: 1.6;
   }
 
-  /* ナビボタン */
   .page-navigation {
     gap: 3rem;
     margin-top: 2rem;

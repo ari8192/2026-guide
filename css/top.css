@@ -169,11 +169,12 @@ body {
 }
 
 .mv-image {
-  width: 100%;
-  aspect-ratio: 4 / 3;
+  width: 60%;
+  aspect-ratio: 3 / 4;
   background-color: #d9d9d9;
   border-radius: 4px;
   overflow: hidden;
+  margin: 0 auto;
 }
 
 /* コンテンツセクション */
@@ -244,6 +245,7 @@ body {
 
 .card-img {
   width: 100px;
+  height: 80px;
   min-width: 100px;
   background-color: #d9d9d9;
 }
@@ -324,14 +326,15 @@ body {
     align-items: center;
     padding-top: 6rem;
     padding-bottom: 6rem;
-    gap: 1rem;
+    gap: 2.5rem;
     text-align: left;
   }
 
   /* 文字エリアが広がりすぎないように最大幅を制限して、右の画像に近づけます */
   .mv-text {
     flex: initial;
-    width: 500px;
+    width: auto;
+    max-width: 450px;
   }
 
   .mv-text h2 {
@@ -346,11 +349,11 @@ body {
   }
 
   .mv-image {
-    width: 500px;
-    height: 350px;
+    width: 420px;
+    height: 470px;
     flex-shrink: 0;
+    margin: 0;
   }
-
   .contents-section {
     padding-top: 5rem;
     padding-bottom: 9rem;

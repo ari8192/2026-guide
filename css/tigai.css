@@ -194,7 +194,7 @@ body {
   font-size: 0.75rem;
   font-weight: bold;
   position: relative;
-  margin-left: 28px;
+  margin-left: 100px;
 }
 
 /* 吹き出しのしっぽを作る */
@@ -224,11 +224,20 @@ body {
   vertical-align: middle;
 }
 
-/* 3列目のセル全体の設定 */
+/* 比較表の画像が入るセル（2列目と3列目）の設定 */
+.comparison-table td:nth-child(2),
 .comparison-table td:nth-child(3) {
-  display: table-cell;
   vertical-align: middle;
   padding: 0.5rem 0.3rem;
+}
+
+/* ★ 2列目と3列目の両方の画像コンテナをFlexboxで中央寄せにする */
+.comparison-table td .image-container {
+  display: flex !important;
+  justify-content: center; /* 横方向の中央寄せ */
+  align-items: center; /* 縦方向の中央寄せ */
+  gap: 0.3rem;
+  width: 100%;
 }
 
 /* ★ポイント：コンテナをFlexboxにして強制的に横並びにする */
@@ -248,6 +257,7 @@ body {
   background-color: #d9d9d9;
   border-radius: 6px;
   overflow: hidden;
+  margin: 0 auto; /* 万が一Flexが効かない場合保険の中央寄せ */
 }
 
 .comparison-table th {
@@ -378,6 +388,25 @@ body {
   /* ★PC時のみ画像を本来のサイズに戻す */
   .table-img {
     width: 250px;
+  }
+
+  /* ★PC版吹き出し（サイズアップ＆位置調整） */
+  .recommend-bubble {
+    font-size: 1.05rem;
+    padding: 0.6rem 1.4rem;
+    border-radius: 24px;
+    border-width: 2px;
+    margin-left: 310px;
+    margin-bottom: 0.8rem;
+  }
+
+  /* ★PC版吹き出しのしっぽ（本体に合わせてサイズ調整） */
+  .recommend-bubble::after {
+    bottom: -9px;
+    left: 25px;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-top: 9px solid #98b8d5;
   }
 
   .page-navigation {
