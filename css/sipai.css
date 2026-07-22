@@ -1,0 +1,571 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   【共通】リセットCSS & 全体基本設定
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+body {
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    line-height: 1.6;
+    color: #333333;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   【共通】ヘッダー
+   ========================================================================== */
+.site-header {
+    background-color: #d9eef5;
+    color: #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 1rem;
+}
+
+.logo {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   右上メニュー（オーバーレイ）スタイル：正円＆位置固定版
+   ========================================================================== */
+.overlay-menu {
+    position: fixed;
+    /* ★完全な正円（スマホ用：550px） */
+    width: 550px;
+    height: 550px;
+    border-radius: 50%;
+    background-color: #cbe7fc;
+    box-shadow: -10px 10px 30px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+
+    /* ★右上にはみ出させて配置（画面の角をきれいなアールで覆う） */
+    top: -100px;
+    right: -100px;
+
+    /* 斜めの開閉アニメーション（中心を右上端に） */
+    transform-origin: calc(100% - 100px) 100px;
+    transform: scale(0);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        transform 0.45s cubic-bezier(0.25, 1, 0.5, 1),
+        opacity 0.35s ease;
+}
+
+/* メニューが開いたとき */
+.overlay-menu.open {
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ★閉じるボタン（×）：画面の右上端（赤×の位置）に固定 */
+.close-btn {
+    position: absolute;
+    top: 120px;
+    /* 画面の最上部からの距離を固定 */
+    right: 120px;
+    /* 画面の最右部からの距離を固定 */
+    font-size: 3rem;
+    font-weight: 300;
+    color: #000000;
+    cursor: pointer;
+    line-height: 1;
+    z-index: 10000;
+}
+
+/* ★リンク全体の配置（赤四角の位置）：×ボタンの下にきれいに収める */
+.menu-links {
+    position: absolute;
+
+    /* ★少し上に引き上げ、少し右に寄せました */
+    top: 150px;
+    right: 135px;
+
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 2.2rem;
+    text-align: center;
+}
+
+.menu-links a {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #001f54;
+    line-height: 1.4;
+    transition: color 0.2s ease;
+    display: block;
+}
+
+.menu-links a:hover {
+    color: #f6ffb2;
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+}
+
+.menu-btn span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #000;
+}
+
+.site-main {
+    flex: 1;
+}
+
+/* ==========================================================================
+   メインレイアウト（スマホ基本）
+   ========================================================================== */
+.detail-page {
+    padding: 3.5rem 1.5rem 6rem;
+    width: 100%;
+    max-width: 100vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+}
+
+.detail-intro {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.detail-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.8rem;
+    letter-spacing: 0.05em;
+}
+
+.detail-lead-text {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #333333;
+}
+
+/* ==========================================================================
+   丸アイコン選択エリア（スマホ）
+   ========================================================================== */
+.trouble-selector {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.3rem;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.circle-btn {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background-color: #eaf7fa;
+    border: 1.5px solid #a2c8df;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+}
+
+.icon-emoji {
+    font-size: 0.9rem;
+    line-height: 1;
+}
+
+.circle-label {
+    font-size: 0.52rem;
+    color: #333;
+    line-height: 1.1;
+    text-align: center;
+}
+
+/* 選択中のアイコン（強調青枠） */
+.circle-btn.active {
+    border: 3.5px solid #0a5296;
+    background-color: #d7f0f8;
+    transform: scale(1.05);
+}
+
+/* ==========================================================================
+   詳細カード表示エリア（メイン枠）
+   ========================================================================== */
+.trouble-card-container {
+    width: 100%;
+    max-width: 380px;
+    margin-bottom: 6rem;
+}
+
+.trouble-card {
+    display: none;
+    background-color: #eaf7fa;
+    border: 2px solid #0a5296;
+    border-radius: 20px;
+    padding: 1.8rem 1rem;
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.trouble-card.active {
+    display: block;
+}
+
+.card-headline {
+    font-size: 1.35rem;
+    color: #000;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.card-subtext {
+    font-size: 0.8rem;
+    color: #444;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+}
+
+/* 原因・対処法 ボックス配置 */
+.card-boxes {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.info-box {
+    border-radius: 14px;
+    padding: 1.2rem 1rem;
+    text-align: left;
+}
+
+.box-title {
+    text-align: center;
+    font-size: 1.15rem;
+    font-weight: bold;
+    margin-bottom: 0.8rem;
+}
+
+/* 原因（ピンク） */
+.cause-box {
+    background-color: #fce8e8;
+    border: 1.5px solid #a62b2b;
+}
+
+.cause-box .box-title {
+    color: #333;
+}
+
+.cause-list li {
+    font-size: 0.82rem;
+    color: #333;
+    margin-bottom: 0.4rem;
+    position: relative;
+    padding-left: 1.1rem;
+}
+
+.cause-list li::before {
+    content: "・";
+    position: absolute;
+    left: 0;
+}
+
+/* 対処法（ミントグリーン） */
+.remedy-box {
+    background-color: #d1f7ea;
+    border: 1.5px solid #108a63;
+}
+
+.remedy-box .box-title {
+    color: #333;
+}
+
+.remedy-list li {
+    font-size: 0.82rem;
+    color: #333;
+    margin-bottom: 0.4rem;
+    position: relative;
+    padding-left: 1.3rem;
+}
+
+.remedy-list li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+/* ポイントエリア */
+.point-section {
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.point-title {
+    font-size: 1.05rem;
+    margin-bottom: 0.6rem;
+    font-weight: bold;
+}
+
+.point-card {
+    background-color: #f2f7fb;
+    border: 2px solid #8baec7;
+    border-radius: 12px;
+    padding: 1.2rem;
+}
+
+.point-card p {
+    font-size: 0.88rem;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   【共通】ページ下部ナビゲーション
+   ========================================================================== */
+.page-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.nav-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 110px;
+    height: 40px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    /* 通常時は細字 */
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary {
+    background-color: #eaf7fa;
+    border: 2px solid #98b8d5;
+    color: #333333;
+}
+
+.btn-primary {
+    background-color: #eaf7fa;
+    border: 2px solid #98b8d5;
+    color: #333333;
+}
+
+/* ボタンホバー時：お気に入りの「太字変化＆浮き上がり」 */
+.nav-btn:hover {
+    transform: translateY(-2px);
+    font-weight: 700;
+    /* ホバーで太字に */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.btn-secondary:hover {
+    background-color: #7ea9d1;
+    border: 2px solid #eaf7fa;
+    color: #fdffed;
+}
+
+.btn-primary:hover {
+    background-color: #7ea9d1;
+    border: 2px solid #eaf7fa;
+    color: #fdffed;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   【PC版】レスポンシブ調整（min-width: 768px）
+   ========================================================================== */
+@media (min-width: 768px) {
+    .overlay-menu {
+        width: 850px;
+        height: 850px;
+        border-radius: 50%;
+        top: -150px;
+        right: -150px;
+        transform-origin: calc(100% - 150px) 150px;
+        padding: 0;
+    }
+
+    .close-btn {
+        top: 185px;
+        right: 185px;
+        font-size: 4.5rem;
+    }
+
+    .menu-links {
+        top: 200px;
+        right: 220px;
+        width: 460px;
+        gap: 3.2rem;
+        margin-top: 0;
+    }
+
+    .menu-links a {
+        font-size: 1.55rem;
+    }
+
+    .detail-page {
+        padding: 5.5rem 2rem 8rem;
+        max-width: 1100px;
+        gap: 0;
+    }
+
+    .detail-intro {
+        margin-bottom: 6.5rem;
+    }
+
+    .detail-title {
+        font-size: 2.2rem;
+        margin-bottom: 5.5rem;
+    }
+
+    .detail-lead-text {
+        font-size: 1.15rem;
+        line-height: 1.8;
+    }
+
+    /* 丸アイコンPC表示（拡大＆配置間隔調整） */
+    .trouble-selector {
+        gap: 2.2rem;
+        margin-bottom: 3.2rem;
+    }
+
+    .circle-btn {
+        width: 105px;
+        height: 105px;
+        border-width: 2px;
+    }
+
+    .icon-emoji {
+        font-size: 1.6rem;
+        margin-bottom: 4px;
+    }
+
+    .circle-label {
+        font-size: 0.85rem;
+    }
+
+    .circle-btn.active {
+        border-width: 4px;
+    }
+
+    /* メイン詳細カードPC（原因と対処法を横並び2列に） */
+    .trouble-card-container {
+        max-width: 820px;
+        margin-bottom: 8.5rem;
+    }
+
+    .trouble-card {
+        padding: 2.8rem 2.5rem;
+    }
+
+    .card-headline {
+        font-size: 1.8rem;
+    }
+
+    .card-subtext {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .card-boxes {
+        flex-direction: row;
+        gap: 2rem;
+    }
+
+    .info-box {
+        flex: 1;
+        padding: 1.8rem 1.5rem;
+    }
+
+    .box-title {
+        font-size: 1.35rem;
+    }
+
+    .cause-list li,
+    .remedy-list li {
+        font-size: 0.98rem;
+        margin-bottom: 0.7rem;
+    }
+
+    /* ポイントカードPC */
+    .point-section {
+        max-width: 820px;
+        margin-bottom: 11rem;
+    }
+
+    .point-card {
+        padding: 1.8rem;
+    }
+
+    .point-card p {
+        font-size: 1.1rem;
+    }
+
+    /* ナビボタンPC */
+    .page-navigation {
+        gap: 3rem;
+    }
+
+    .nav-btn {
+        width: 140px;
+        height: 45px;
+        font-size: 1rem;
+    }
+}

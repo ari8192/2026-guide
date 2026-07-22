@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>よくある失敗と対処法 | はじめてのUVレジン</title>
+    <link rel="stylesheet" href="css/sipai.css" />
+</head>
+
+<body>
+    <!-- 全ページ共通ヘッダー -->
+    <header class="site-header">
+        <h1 class="logo"><a href="index.html" style="color: inherit">はじめてのUVレジン</a></h1>
+
+        <!-- 全ページ共通：オーバーレイ型円形メニュー -->
+        <nav class="overlay-menu" id="overlayMenu">
+            <button class="close-btn" id="closeMenuBtn" aria-label="メニューを閉じる">&times;</button>
+            <ul class="menu-links">
+                <li><a href="index.html">TOP</a></li>
+                <li><a href="rejinn.html">レジンってどんなもの？</a></li>
+                <li>
+                    <a href="tigai.html">
+                        UVレジンと、2液性レジン<br />(エポキシレジン)の違い
+                    </a>
+                </li>
+                <li><a href="syurui.html">UVレジン液の種類について</a></li>
+                <li><a href="dougu.html">制作に必要な道具</a></li>
+                <li><a href="tukurikata.html">基本の作り方</a></li>
+            </ul>
+        </nav>
+
+        <button class="menu-btn" aria-label="メニュー">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <main class="site-main">
+        <article class="detail-page">
+            <!-- 導入部分 -->
+            <section class="detail-intro">
+                <h2 class="detail-title">よくある失敗と対処法</h2>
+                <p class="detail-lead-text">
+                    初めてレジン作品を作ると、思ったように仕上がらないこともあります。<br />
+                    ここでは、初心者によくある失敗と対処法を紹介します。
+                </p>
+            </section>
+
+            <!-- 丸アイコン選択エリア（5種類） -->
+            <section class="trouble-selector">
+                <button class="circle-btn active" data-target="bubble">
+                    <span class="icon-emoji">🫧</span>
+                    <span class="circle-label">気泡が入ってしまう</span>
+                </button>
+                <button class="circle-btn" data-target="sticky">
+                    <span class="icon-emoji">💧</span>
+                    <span class="circle-label">ベタベタして固まらない</span>
+                </button>
+                <button class="circle-btn" data-target="yellow">
+                    <span class="icon-emoji">☀️</span>
+                    <span class="circle-label">黄ばんでしまった</span>
+                </button>
+                <button class="circle-btn" data-target="uneven">
+                    <span class="icon-emoji">〰️</span>
+                    <span class="circle-label">表面が凸凹になった</span>
+                </button>
+                <button class="circle-btn" data-target="uncured">
+                    <span class="icon-emoji">💔</span>
+                    <span class="circle-label">うまく硬化しない</span>
+                </button>
+            </section>
+
+            <!-- 詳細表示エリア（選択に応じて切り替え） -->
+            <section class="trouble-card-container">
+                <!-- 1. 気泡が入ってしまう -->
+                <div class="trouble-card active" id="trouble-bubble">
+                    <h3 class="card-headline">気泡が入ってしまう</h3>
+                    <p class="card-subtext">レジン液を混ぜるときや硬化するときに、空気 insurgencyが入ってしまうことがあります</p>
+                    <div class="card-boxes">
+                        <div class="info-box cause-box">
+                            <h4 class="box-title">原因</h4>
+                            <ul class="cause-list">
+                                <li>レジン液をよく混ぜている</li>
+                                <li>気泡を取り除かずに硬化した</li>
+                                <li>高いところから注いだ</li>
+                            </ul>
+                        </div>
+                        <div class="info-box remedy-box">
+                            <h4 class="box-title">対処法</h4>
+                            <ul class="remedy-list">
+                                <li>ゆっくり、やさしく混ぜる</li>
+                                <li>つまようじやエンボスヒーターで気泡を取り除く</li>
+                                <li>低い位置から静かに注ぐ</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. ベタベタして固まらない -->
+                <div class="trouble-card" id="trouble-sticky">
+                    <h3 class="card-headline">ベタベタして固まらない</h3>
+                    <p class="card-subtext">レジンがうまく硬化せず、表面がベタベタしてしまう状態です</p>
+                    <div class="card-boxes">
+                        <div class="info-box cause-box">
+                            <h4 class="box-title">原因</h4>
+                            <ul class="cause-list">
+                                <li>硬化時間が短い</li>
+                                <li>レジン液・着色剤の量が多い</li>
+                                <li>気温や湿度の高い環境で作業している</li>
+                            </ul>
+                        </div>
+                        <div class="info-box remedy-box">
+                            <h4 class="box-title">対処法</h4>
+                            <ul class="remedy-list">
+                                <li>硬化時間を長くする</li>
+                                <li>レジン液・着色剤を適切な量にする</li>
+                                <li>涼しい環境で作業する</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. 黄ばんでしまう -->
+                <div class="trouble-card" id="trouble-yellow">
+                    <h3 class="card-headline">黄ばんでしまう</h3>
+                    <p class="card-subtext">時間が経つと、レジンが黄色っぽく変色してしまうことがあります。</p>
+                    <div class="card-boxes">
+                        <div class="info-box cause-box">
+                            <h4 class="box-title">原因</h4>
+                            <ul class="cause-list">
+                                <li>UVライトの光が強すぎる</li>
+                                <li>レジン液に含まれる成分の影響</li>
+                                <li>長時間、直射日光に当てている</li>
+                            </ul>
+                        </div>
+                        <div class="info-box remedy-box">
+                            <h4 class="box-title">対処法</h4>
+                            <ul class="remedy-list">
+                                <li>適切な時間でライトを照射する</li>
+                                <li>黄ばみにくいレジン液を使う</li>
+                                <li>直射日光を避けて保管する</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. 表面が凸凹になった -->
+                <div class="trouble-card" id="trouble-uneven">
+                    <h3 class="card-headline">表面が凸凹になった</h3>
+                    <p class="card-subtext">レジンの表面がデコボコになってしまう状態です</p>
+                    <div class="card-boxes">
+                        <div class="info-box cause-box">
+                            <h4 class="box-title">原因</h4>
+                            <ul class="cause-list">
+                                <li>硬化前にホコリなどゴミが付いた</li>
+                                <li>レジン液が均一に広がっていない</li>
+                                <li>気泡が抜けきっていない</li>
+                            </ul>
+                        </div>
+                        <div class="info-box remedy-box">
+                            <h4 class="box-title">対処法</h4>
+                            <ul class="remedy-list">
+                                <li>作業前にホコリやゴミを取り除く</li>
+                                <li>均一に広げる、後からコーティングして均一にする</li>
+                                <li>気泡を抜いてから硬化する</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. うまく硬化しない -->
+                <div class="trouble-card" id="trouble-uncured">
+                    <h3 class="card-headline">うまく硬化しない</h3>
+                    <p class="card-subtext">レジンが固まらず、柔らかいままになってしまう状態です</p>
+                    <div class="card-boxes">
+                        <div class="info-box cause-box">
+                            <h4 class="box-title">原因</h4>
+                            <ul class="cause-list">
+                                <li>硬化時間が短い</li>
+                                <li>着色剤の量が多い</li>
+                                <li>UVライトの出力が弱い</li>
+                            </ul>
+                        </div>
+                        <div class="info-box remedy-box">
+                            <h4 class="box-title">対処法</h4>
+                            <ul class="remedy-list">
+                                <li>硬化時間を長くする</li>
+                                <li>着色剤を適量にする（目安:1・2滴）</li>
+                                <li>強めのUVライトにする</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ✨ポイントエリア -->
+            <section class="point-section">
+                <h3 class="point-title">✨ポイント</h3>
+                <div class="point-card">
+                    <p>焦らず、ひとつずつ確認しながら作業すると、きれいな作品に仕上がります。</p>
+                </div>
+            </section>
+
+            <!-- 共通ページ下部ナビゲーション -->
+            <div class="page-navigation">
+                <a href="tukurikata.html" class="nav-btn btn-secondary">&larr; 戻る</a>
+                <a href="index.html" class="nav-btn btn-secondary">TOPへ</a>
+            </div>
+        </article>
+    </main>
+
+    <!-- JavaScript（開閉・切替スクリプト） -->
+    <script>
+        // 1. 丸アイコン切り替え処理
+        const circleBtns = document.querySelectorAll(".circle-btn");
+        const troubleCards = document.querySelectorAll(".trouble-card");
+
+        circleBtns.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                const targetId = btn.getAttribute("data-target");
+
+                circleBtns.forEach((b) => b.classList.remove("active"));
+                troubleCards.forEach((c) => c.classList.remove("active"));
+
+                btn.classList.add("active");
+                const targetCard = document.getElementById(`trouble-${targetId}`);
+                if (targetCard) {
+                    targetCard.classList.add("active");
+                }
+            });
+        });
+
+        // 2. メニュー開閉の制御（全ページ共通構造）
+        const menuBtn = document.querySelector(".menu-btn");
+        const closeMenuBtn = document.getElementById("closeMenuBtn");
+        const overlayMenu = document.getElementById("overlayMenu");
+
+        menuBtn.addEventListener("click", () => {
+            overlayMenu.classList.add("open");
+        });
+
+        closeMenuBtn.addEventListener("click", () => {
+            overlayMenu.classList.remove("open");
+        });
+
+        document.querySelectorAll(".menu-links a").forEach((link) => {
+            link.addEventListener("click", () => {
+                overlayMenu.classList.remove("open");
+            });
+        });
+
+        document.addEventListener("click", (event) => {
+            if (overlayMenu.classList.contains("open")) {
+                if (!overlayMenu.contains(event.target) && !menuBtn.contains(event.target)) {
+                    overlayMenu.classList.remove("open");
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
