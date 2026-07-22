@@ -53,7 +53,6 @@ body {
    ========================================================================== */
 .overlay-menu {
   position: fixed;
-  /* ★完全な正円（スマホ用：550px） */
   width: 550px;
   height: 550px;
   border-radius: 50%;
@@ -85,8 +84,8 @@ body {
 /* ★閉じるボタン（×）：画面の右上端（赤×の位置）に固定 */
 .close-btn {
   position: absolute;
-  top: 120px; /* 画面の最上部からの距離を固定 */
-  right: 120px; /* 画面の最右部からの距離を固定 */
+  top: 120px;
+  right: 120px;
   font-size: 3rem;
   font-weight: 300;
   color: #000000;
@@ -98,8 +97,6 @@ body {
 /* ★リンク全体の配置（赤四角の位置）：×ボタンの下にきれいに収める */
 .menu-links {
   position: absolute;
-
-  /* ★少し上に引き上げ、少し右に寄せました */
   top: 150px;
   right: 135px;
 
@@ -149,13 +146,13 @@ body {
    3ページ目専用：メインレイアウト
    ========================================================================== */
 .detail-page {
-  padding: 4.5rem 1.5rem 7rem;
+  padding: 2.5rem 1rem 4rem;
   max-width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5rem;
+  gap: 2.5rem;
 }
 
 .detail-intro {
@@ -165,53 +162,55 @@ body {
 }
 
 .detail-title {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: bold;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   letter-spacing: 0.05em;
 }
 
-/* 比較表の外枠：ここが重要です */
+.detail-lead-text {
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+/* 比較表の外枠 */
 .table-wrapper {
   position: relative;
-  margin: 3rem 0;
-  overflow-x: auto; /* ここでスクロールさせる */
-  width: 100%; /* これで親の幅に収める */
-  -webkit-overflow-scrolling: touch; /* iOS用 */
+  margin: 1rem 0 0;
+  overflow-x: auto;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* 吹き出し */
-/* 吹き出しの見た目をスクリーンショット風に修正 */
 .recommend-bubble {
-  background-color: #e0f0f5; /* 少し薄い水色 */
+  background-color: #e0f0f5;
   color: #333;
-  padding: 0.8rem 1.2rem;
-  border-radius: 20px; /* 角丸を大きく */
-  border: 2px solid #98b8d5; /* 枠線を追加 */
+  padding: 0.4rem 0.8rem;
+  border-radius: 16px;
+  border: 1.5px solid #98b8d5;
   display: inline-block;
-  margin-bottom: 0.5rem;
-  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.75rem;
   font-weight: bold;
   position: relative;
-  margin-left: 60px;
+  margin-left: 28px;
 }
 
 /* 吹き出しのしっぽを作る */
 .recommend-bubble::after {
   content: "";
   position: absolute;
-  bottom: -8px;
-  left: 20px;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-top: 8px solid #98b8d5;
+  bottom: -6px;
+  left: 15px;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #98b8d5;
 }
-
 /* 比較表 */
 .comparison-table {
   width: 100%;
-  /* ★ここを大きくすると表全体が横に広がります（スマホ・PC共通） */
-  min-width: 450px;
+  min-width: 320px;
   border-collapse: collapse;
 }
 
@@ -219,35 +218,35 @@ body {
 .comparison-table th,
 .comparison-table td {
   border: 1px solid #333;
-  padding: 1rem 1rem; /* 上下のパディングを少し調整 */
+  padding: 0.5rem 0.4rem;
   text-align: center;
-  font-size: 0.95rem;
-  vertical-align: middle; /* セル内のコンテンツを垂直中央に寄せる */
+  font-size: 0.78rem;
+  vertical-align: middle;
 }
 
 /* 3列目のセル全体の設定 */
 .comparison-table td:nth-child(3) {
-  display: table-cell; /* blockではなく、テーブルセルとして扱う */
+  display: table-cell;
   vertical-align: middle;
-  padding: 1rem;
+  padding: 0.5rem 0.3rem;
 }
 
 /* ★ポイント：コンテナをFlexboxにして強制的に横並びにする */
 .comparison-table td:nth-child(3) .image-container {
-  display: flex !important; /* !importantで強制適用 */
+  display: flex !important;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.3rem;
   width: 100%;
 }
 
 /* 画像自体のサイズを小さめに保つ（横並びにするため） */
 .table-img {
   aspect-ratio: 3 / 4;
-  width: 100px; /* 横並びにするため少し小さく設定 */
-  flex-shrink: 0; /* 縮まないようにする */
+  width: 65px;
+  flex-shrink: 0;
   background-color: #d9d9d9;
-  border-radius: 8px;
+  border-radius: 6px;
   overflow: hidden;
 }
 
@@ -255,7 +254,9 @@ body {
   background: #f2f2f2;
 }
 
-/* 3つ並んだボタン */
+/* ==========================================================================
+   ページ下部ナビゲーション
+   ========================================================================== */
 .page-navigation {
   display: flex;
   justify-content: center;
@@ -271,7 +272,7 @@ body {
   height: 40px;
   border-radius: 20px;
   font-size: 0.9rem;
-  font-weight: 400; /* 通常時は細字 */
+  font-weight: 400;
   text-align: center;
   transition: all 0.3s ease;
 }
@@ -291,7 +292,7 @@ body {
 /* ボタンホバー時：お気に入りの「太字変化＆浮き上がり」 */
 .nav-btn:hover {
   transform: translateY(-2px);
-  font-weight: 700; /* ホバーで太字に */
+  font-weight: 700;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
@@ -312,35 +313,26 @@ body {
    ========================================================================== */
 @media (min-width: 768px) {
   .overlay-menu {
-    /* ★PC版：完全に歪みのない大きな「正円」に統一 */
     width: 850px;
     height: 850px;
     border-radius: 50%;
-
-    /* ★右上にはみ出させる量を固定 */
     top: -150px;
     right: -150px;
-
-    /* アニメーションの起点をPC用に修正 */
     transform-origin: calc(100% - 150px) 150px;
-
-    /* レイアウトのバグを防ぐため余白設定をクリア */
     padding: 0;
   }
 
-  /* ★PC版閉じるボタン：画面の右上端（赤×のジャスト位置） */
+  /* ★PC版閉じるボタン：画面の右上端 */
   .close-btn {
-    top: 185px; /* 画面の右上角にぴったり綺麗に見える位置 */
+    top: 185px;
     right: 185px;
     font-size: 4.5rem;
   }
 
   /* ★PC版リンク配置（赤四角の位置）：右側に縦長の四角形として綺麗に固定 */
   .menu-links {
-    /* ★前回の top: 240px / right: 280px から、右上へジャスト移動 */
-    top: 200px; /* 上に40pxアップ */
-    right: 220px; /* 右に60pxキープ（円の丸みに綺麗に沿う位置） */
-
+    top: 200px;
+    right: 220px;
     width: 460px;
     gap: 3.2rem;
     margin-top: 0;
@@ -353,7 +345,7 @@ body {
   .detail-page {
     padding: 6rem 2rem 10rem;
     width: 100%;
-    max-width: 1260px; /* ★トップページ（1100px）と同じ横幅に揃えます */
+    max-width: 1260px;
     margin: 0 auto;
     gap: 7.5rem;
   }
@@ -374,7 +366,6 @@ body {
   }
 
   .comparison-table {
-    /* ★PC画面ではさらに横幅を広げます */
     min-width: 900px;
   }
 
@@ -386,7 +377,7 @@ body {
 
   /* ★PC時のみ画像を本来のサイズに戻す */
   .table-img {
-    width: 250px; /* ここでサイズを調整してください */
+    width: 250px;
   }
 
   .page-navigation {

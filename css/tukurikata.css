@@ -53,7 +53,6 @@ body {
    ========================================================================== */
 .overlay-menu {
   position: fixed;
-  /* ★完全な正円（スマホ用：550px） */
   width: 550px;
   height: 550px;
   border-radius: 50%;
@@ -85,9 +84,8 @@ body {
 /* ★閉じるボタン（×）：画面の右上端（赤×の位置）に固定 */
 .close-btn {
   position: absolute;
-  top: 120px; /* 画面の最上部からの距離を固定 */
-  right: 120px; /* 画面の最右部からの距離を固定 */
-  font-size: 3rem;
+  top: 120px;
+  right: 120px;
   font-weight: 300;
   color: #000000;
   cursor: pointer;
@@ -98,8 +96,6 @@ body {
 /* ★リンク全体の配置（赤四角の位置）：×ボタンの下にきれいに収める */
 .menu-links {
   position: absolute;
-
-  /* ★少し上に引き上げ、少し右に寄せました */
   top: 150px;
   right: 135px;
 
@@ -150,7 +146,6 @@ body {
    ========================================================================== */
 .detail-page {
   padding: 5.5rem 1rem 8rem;
-  /* ★上下のパディングを 4.5rem/7rem → 5.5rem/8rem へ拡大 */
   width: 100%;
   max-width: 100vw;
   margin: 0 auto;
@@ -158,7 +153,6 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 4.5rem;
-  /* ★導入文とアコーディオンの間隔を 3.5rem → 4.5rem へ拡大 */
 }
 
 .detail-intro {
@@ -170,7 +164,6 @@ body {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 3.5rem;
-  /* ★タイトルと導入テキストの間隔を 2.5rem → 3.5rem へ拡大 */
   letter-spacing: 0.05em;
 }
 
@@ -189,13 +182,11 @@ body {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  /* ★STEPカード同士の縦の隙間を 1.5rem → 2rem へ拡大 */
 }
 
 .step-card {
   width: 100%;
   background-color: #eaf7fa;
-  /* カンプの薄水色背景 */
   border: 1px solid #333333;
   border-radius: 20px;
   overflow: hidden;
@@ -210,12 +201,10 @@ body {
   padding: 0.8rem 1.2rem;
   cursor: pointer;
   background-color: #bfe7f3;
-  /* 見出し部分の少し濃い水色 */
   border-bottom: 1px solid #333333;
   text-align: left;
 }
 
-/* 閉じている状態の時は下の線を隠す */
 .step-card:not(.active) .step-header {
   border-bottom: none;
 }
@@ -245,11 +234,9 @@ body {
 /* アコーディオンの中身（開閉領域） */
 .step-body {
   display: none;
-  /* 初期は非表示 */
   padding: 1.5rem 1.2rem;
 }
 
-/* activeクラスがついたら表示 */
 .step-card.active .step-body {
   display: block;
 }
@@ -281,7 +268,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  /* ★STEPカード同士の縦の隙間を 1.5rem → 2rem へ拡大 */
 }
 
 .info-list dt:first-child {
@@ -315,7 +301,6 @@ body {
   border-radius: 20px;
   font-size: 0.9rem;
   font-weight: 400;
-  /* 通常時は細字 */
   text-align: center;
   transition: all 0.3s ease;
 }
@@ -336,7 +321,6 @@ body {
 .nav-btn:hover {
   transform: translateY(-2px);
   font-weight: 700;
-  /* ホバーで太字に */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
@@ -357,34 +341,26 @@ body {
    ========================================================================== */
 @media (min-width: 768px) {
   .overlay-menu {
-    /* ★PC版：完全に歪みのない大きな「正円」に統一 */
     width: 850px;
     height: 850px;
     border-radius: 50%;
-
-    /* ★右上にはみ出させる量を固定 */
     top: -150px;
     right: -150px;
-
-    /* アニメーションの起点をPC用に修正 */
     transform-origin: calc(100% - 150px) 150px;
-
-    /* レイアウトのバグを防ぐため余白設定をクリア */
     padding: 0;
   }
 
-  /* ★PC版閉じるボタン：画面の右上端（赤×のジャスト位置） */
+  /* ★PC版閉じるボタン：画面の右上端 */
   .close-btn {
-    top: 185px; /* 画面の右上角にぴったり綺麗に見える位置 */
+    top: 185px;
     right: 185px;
     font-size: 4.5rem;
   }
 
   /* ★PC版リンク配置（赤四角の位置）：右側に縦長の四角形として綺麗に固定 */
   .menu-links {
-    /* ★前回の top: 240px / right: 280px から、右上へジャスト移動 */
-    top: 200px; /* 上に40pxアップ */
-    right: 220px; /* 右に60pxキープ（円の丸みに綺麗に沿う位置） */
+    top: 200px;
+    right: 220px;
 
     width: 460px;
     gap: 3.2rem;
@@ -399,7 +375,6 @@ body {
     padding: 7rem 2rem 10rem;
     width: 100%;
     max-width: 1260px;
-    /* ★トップページ（1100px）と同じ横幅に揃えます */
     margin: 0 auto;
     gap: 7.5rem;
   }
@@ -413,11 +388,11 @@ body {
     font-size: 1.15rem;
     line-height: 1.8;
   }
+
   /* PC版アコーディオン幅拡張 */
   .accordion-container {
     max-width: 820px;
     gap: 2.5rem;
-    /* ★PC版のSTEPカード同士の隙間を 2rem → 2.5rem へ拡大 */
   }
 
   .step-header {
@@ -457,7 +432,6 @@ body {
   .info-list dt {
     font-size: 1.05rem;
     margin-top: 1.8rem;
-    /* ★PC版の「☆ポイント」の前の隙間を 1rem → 1.8rem へゆったりと */
   }
 
   .info-list dd {
@@ -471,7 +445,6 @@ body {
   .page-navigation {
     gap: 3rem;
     margin-top: 4.5rem;
-    /* ★PC版のカードと下部ボタンの間隔を 2rem → 4.5rem へ大幅に拡大 */
   }
 
   .nav-btn {

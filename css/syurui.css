@@ -53,7 +53,6 @@ body {
    ========================================================================== */
 .overlay-menu {
   position: fixed;
-  /* ★完全な正円（スマホ用：550px） */
   width: 550px;
   height: 550px;
   border-radius: 50%;
@@ -85,8 +84,8 @@ body {
 /* ★閉じるボタン（×）：画面の右上端（赤×の位置）に固定 */
 .close-btn {
   position: absolute;
-  top: 120px; /* 画面の最上部からの距離を固定 */
-  right: 120px; /* 画面の最右部からの距離を固定 */
+  top: 120px;
+  right: 120px;
   font-size: 3rem;
   font-weight: 300;
   color: #000000;
@@ -98,8 +97,6 @@ body {
 /* ★リンク全体の配置（赤四角の位置）：×ボタンの下にきれいに収める */
 .menu-links {
   position: absolute;
-
-  /* ★少し上に引き上げ、少し右に寄せました */
   top: 150px;
   right: 135px;
 
@@ -185,12 +182,8 @@ body {
 /* ==========================================================================
    スライダー＆カードレイアウト（縦長・ジャストフィット版）
    ========================================================================== */
-/* 1. 外枠：【超重要】ここでカード1枚分の横幅（例: 290px）をガチッと固定し、
-   はみ出たお隣を overflow: hidden で完全に非表示（マスク）にします */
-/* 外枠：ここを書き換えます */
 .slider-outer {
   width: 290px;
-  /* 元の幅のまま固定 */
   max-width: 90vw;
   overflow: hidden;
   display: flex;
@@ -199,22 +192,17 @@ body {
   gap: 1.5rem;
   position: relative;
   margin: 0 auto;
-
-  /* ★追加：比率を完全に保ったまま、カード全体を一回り（1.15倍に）拡大します */
   transform: scale(1.25);
-  /* 拡大した分、上下の他の要素（見出しやボタン）と被らないように余白を自動調整 */
   margin-top: 4rem;
   margin-bottom: 6rem;
 }
 
-/* 2. スライダー本体：外枠の幅（100%）に合わせ、隙間をゼロにします */
+/* 2. スライダー本体 */
 .slider-container {
   display: flex;
   width: 100%;
   padding: 4.5rem 0 0.5rem;
-  /* 上下の余白のみ */
   gap: 0;
-  /* 隙間を完全にゼロにして計算ズレを徹底排除 */
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
@@ -225,14 +213,12 @@ body {
   display: none;
 }
 
-/* 3. 1枚のカード：外枠（slider-outer）と同じ幅に設定して縦長をキープ */
+/* 3. 1枚のカード */
 .card-item {
   flex: 0 0 100%;
-  /* 親要素（290px）と全く同じ幅にする */
   width: 100%;
   margin: 0 !important;
   padding: 0;
-  /* 隙間計算を狂わせないために 0 */
 
   scroll-snap-align: center;
   position: relative;
@@ -567,34 +553,26 @@ body {
    ========================================================================== */
 @media (min-width: 768px) {
   .overlay-menu {
-    /* ★PC版：完全に歪みのない大きな「正円」に統一 */
     width: 850px;
     height: 850px;
     border-radius: 50%;
-
-    /* ★右上にはみ出させる量を固定 */
     top: -150px;
     right: -150px;
-
-    /* アニメーションの起点をPC用に修正 */
     transform-origin: calc(100% - 150px) 150px;
-
-    /* レイアウトのバグを防ぐため余白設定をクリア */
     padding: 0;
   }
 
-  /* ★PC版閉じるボタン：画面の右上端（赤×のジャスト位置） */
+  /* ★PC版閉じるボタン） */
   .close-btn {
-    top: 185px; /* 画面の右上角にぴったり綺麗に見える位置 */
+    top: 185px;
     right: 185px;
     font-size: 4.5rem;
   }
 
   /* ★PC版リンク配置（赤四角の位置）：右側に縦長の四角形として綺麗に固定 */
   .menu-links {
-    /* ★前回の top: 240px / right: 280px から、右上へジャスト移動 */
-    top: 200px; /* 上に40pxアップ */
-    right: 220px; /* 右に60pxキープ（円の丸みに綺麗に沿う位置） */
+    top: 200px;
+    right: 220px;
 
     width: 460px;
     gap: 3.2rem;
@@ -631,8 +609,6 @@ body {
     width: 100%;
     max-width: 100%;
     overflow: visible;
-
-    /* ★ここを追加：スマホ版でかけた拡大（scale）をPC版では完全に無しに戻します */
     transform: none;
     margin-top: 0;
     margin-bottom: 0;
@@ -652,7 +628,6 @@ body {
   .slider-mask {
     width: 100%;
     overflow: visible;
-    /* PC版ではマスクを解除して3枚並べる */
   }
 
   .card-item {

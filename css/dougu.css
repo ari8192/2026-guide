@@ -55,7 +55,6 @@ body {
    ========================================================================== */
 .overlay-menu {
   position: fixed;
-  /* ★完全な正円（スマホ用：550px） */
   width: 550px;
   height: 550px;
   border-radius: 50%;
@@ -100,8 +99,6 @@ body {
 /* ★リンク全体の配置（赤四角の位置）：×ボタンの下にきれいに収める */
 .menu-links {
   position: absolute;
-
-  /* ★少し上に引き上げ、少し右に寄せました */
   top: 150px;
   right: 135px;
 
@@ -124,8 +121,6 @@ body {
 .menu-links a:hover {
   color: #f6ffb2;
 }
-
-/* （中略：その他のボタンやメインビジュアルはそのまま） */
 
 .menu-btn {
   background: none;
@@ -187,12 +182,10 @@ body {
 .tools-section {
   width: 100%;
   max-width: 450px;
-  /* ★ここが効いているので、ここを基準に全体が大きくなります */
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2.5rem;
-  /* 縦の隙間を少し広げてゆったりと */
 }
 
 .tool-row {
@@ -201,7 +194,6 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  /* アイコン一覧と詳細カードの間の隙間 */
 }
 
 .section-subtitle {
@@ -222,7 +214,6 @@ body {
   gap: 0;
   width: 100%;
   padding: 0;
-  /* ★左右の無駄な余白を無くして横幅いっぱいに使う */
 }
 
 /* 個々の丸ボタンボタン */
@@ -233,11 +224,8 @@ body {
   gap: 0.3rem;
   cursor: pointer;
   width: auto;
-  /* 幅を自動にして均等配置に任せる */
   flex: 1;
-  /* すべて均等な幅で引き伸ばす */
   min-width: 0;
-  /* 文字がはみ出たときに枠を壊さないお守り */
   transition: transform 0.2s ease;
 }
 
@@ -266,7 +254,6 @@ body {
   white-space: nowrap;
   color: #333;
   text-align: center;
-  /* transform: scale(0.9); は削除 */
 }
 
 /* ==========================================================================
@@ -278,7 +265,6 @@ body {
   border: 2px solid #a3f3fc;
   border-radius: 16px;
   padding: 1.5rem 1rem;
-  /* ★上下の余白を少し広げてふっくらと */
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -333,7 +319,6 @@ body {
   border-radius: 20px;
   font-size: 0.9rem;
   font-weight: 400;
-  /* 通常時は細字 */
   text-align: center;
   transition: all 0.3s ease;
 }
@@ -354,7 +339,6 @@ body {
 .nav-btn:hover {
   transform: translateY(-2px);
   font-weight: 700;
-  /* ホバーで太字に */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
@@ -375,34 +359,26 @@ body {
    ========================================================================== */
 @media (min-width: 768px) {
   .overlay-menu {
-    /* ★PC版：完全に歪みのない大きな「正円」に統一 */
     width: 850px;
     height: 850px;
     border-radius: 50%;
-
-    /* ★右上にはみ出させる量を固定 */
     top: -150px;
     right: -150px;
-
-    /* アニメーションの起点をPC用に修正 */
     transform-origin: calc(100% - 150px) 150px;
-
-    /* レイアウトのバグを防ぐため余白設定をクリア */
     padding: 0;
   }
 
-  /* ★PC版閉じるボタン：画面の右上端（赤×のジャスト位置） */
+  /* ★PC版閉じるボタン：画面の右上端 */
   .close-btn {
-    top: 185px; /* 画面の右上角にぴったり綺麗に見える位置 */
+    top: 185px;
     right: 185px;
     font-size: 4.5rem;
   }
 
   /* ★PC版リンク配置（赤四角の位置）：右側に縦長の四角形として綺麗に固定 */
   .menu-links {
-    /* ★前回の top: 240px / right: 280px から、右上へジャスト移動 */
-    top: 200px; /* 上に40pxアップ */
-    right: 220px; /* 右に60pxキープ（円の丸みに綺麗に沿う位置） */
+    top: 200px;
+    right: 220px;
 
     width: 460px;
     gap: 3.2rem;
@@ -417,7 +393,6 @@ body {
     padding: 7rem 2rem 10rem;
     width: 100%;
     max-width: 1260px;
-    /* ★トップページ（1100px）と同じ横幅に揃えます */
     margin: 0 auto;
     gap: 7.5rem;
   }
@@ -442,12 +417,10 @@ body {
   .tool-row {
     width: 100%;
     gap: 3.5rem;
-    /* アイコン一覧とカードの間の隙間を広げてリッチに */
   }
 
   .section-subtitle {
     font-size: 1.6rem;
-    /* サブタイトルを強調 */
     padding-bottom: 0.8rem;
   }
 
@@ -467,36 +440,29 @@ body {
 
   .item-node:hover {
     transform: translateY(-3px);
-    /* ホバー時にちょっと浮く遊び心 */
   }
 
   .circle-image {
     width: 76px;
-    /* ★アイコンの円を 65px → 76px に拡大 */
     height: 76px;
   }
 
   .item-label {
     font-size: 0.9rem;
-    /* 文字も少し拡大 */
     font-weight: 500;
   }
 
   /* PC版：詳細表示パネルの拡大 */
   .detail-panel {
     max-width: 780px;
-    /* ★パネルの横幅を 620px → 780px にガッツリ拡大 */
     padding: 2.5rem 3rem;
-    /* 内側の余白も広げてリッチに */
     gap: 3.5rem;
     border-radius: 24px;
     border-width: 3px;
-    /* 枠線も少し太くして存在感をアップ */
   }
 
   .panel-placeholder {
     width: 260px;
-    /* ★画像サイズを 210px → 260px に拡大 */
     height: 165px;
   }
 
@@ -508,13 +474,11 @@ body {
 
   .panel-title {
     font-size: 1.6rem;
-    /* タイトルを大きく */
     margin-bottom: 1rem;
   }
 
   .panel-desc {
     font-size: 1rem;
-    /* 説明文を読みやすく */
     line-height: 1.6;
   }
 

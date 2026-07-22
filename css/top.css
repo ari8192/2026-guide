@@ -55,7 +55,6 @@ body {
    ========================================================================== */
 .overlay-menu {
   position: fixed;
-  /* ★完全な正円（スマホ用：550px） */
   width: 550px;
   height: 550px;
   border-radius: 50%;
@@ -87,8 +86,8 @@ body {
 /* ★閉じるボタン（×）：画面の右上端（赤×の位置）に固定 */
 .close-btn {
   position: absolute;
-  top: 120px; /* 画面の最上部からの距離を固定 */
-  right: 120px; /* 画面の最右部からの距離を固定 */
+  top: 120px;
+  right: 120px;
   font-size: 3rem;
   font-weight: 300;
   color: #000000;
@@ -100,8 +99,6 @@ body {
 /* ★リンク全体の配置（赤四角の位置）：×ボタンの下にきれいに収める */
 .menu-links {
   position: absolute;
-
-  /* ★少し上に引き上げ、少し右に寄せました */
   top: 150px;
   right: 135px;
 
@@ -125,8 +122,6 @@ body {
   color: #f6ffb2;
 }
 
-/* （中略：その他のボタンやメインビジュアルはそのまま） */
-
 .menu-btn {
   background: none;
   border: none;
@@ -149,7 +144,7 @@ body {
   flex: 1;
 }
 
-/* ★スマホ用：メインビジュアル（テキストを中央揃えに変更） */
+/* ★スマホ用：メインビジュアル */
 .main-visual {
   padding: 2.5rem 1.5rem;
   background-color: #ffffff;
@@ -157,7 +152,6 @@ body {
   flex-direction: column;
   gap: 1.5rem;
   text-align: center;
-  /* テキスト全体を中央揃えに */
 }
 
 .mv-text h2 {
@@ -221,13 +215,10 @@ body {
 .card {
   display: flex;
   background-color: #eaf7fa;
-  /* 通常時の背景色（薄い水色） */
   border: 2px solid #00449159;
   border-radius: 12px;
   overflow: hidden;
   color: #333333;
-
-  /* 👇 background-color もふわっと変化させる対象に含めます */
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease,
@@ -239,15 +230,12 @@ body {
 .card:hover {
   transform: scale(1.03);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-
-  /* 👇 スマホ版でホバーした時に、カード全体の背景色を少し濃い水色に変える */
   background-color: #cee3ff;
 }
 
 /* ★ホバー時に、カード内の文字（p）と矢印（.arrow）の両方を太くする */
 .card:hover .card-body p {
   font-weight: 700;
-  /* ★ここでホバー後に太字（Bold）にします */
 }
 
 .card:hover .arrow {
@@ -271,18 +259,15 @@ body {
 .card-body p {
   font-size: 0.95rem;
   font-weight: 400;
-  /* ★太字（bold）から通常の太さに変更 */
   padding-right: 0.5rem;
   transition:
     font-weight 0.3s ease,
     color 0.3s ease;
-  /* 変化をふわっと */
 }
 
 .arrow {
   font-size: 1.2rem;
   font-weight: 400;
-  /* ★矢印も通常の太さに */
   transition:
     font-weight 0.3s ease,
     color 0.3s ease;
@@ -293,34 +278,26 @@ body {
    ========================================================================== */
 @media (min-width: 768px) {
   .overlay-menu {
-    /* ★PC版：完全に歪みのない大きな「正円」に統一 */
     width: 850px;
     height: 850px;
     border-radius: 50%;
-
-    /* ★右上にはみ出させる量を固定 */
     top: -150px;
     right: -150px;
-
-    /* アニメーションの起点をPC用に修正 */
     transform-origin: calc(100% - 150px) 150px;
-
-    /* レイアウトのバグを防ぐため余白設定をクリア */
     padding: 0;
   }
 
-  /* ★PC版閉じるボタン：画面の右上端（赤×のジャスト位置） */
+  /* ★PC版閉じるボタン：画面の右上端 */
   .close-btn {
-    top: 185px; /* 画面の右上角にぴったり綺麗に見える位置 */
+    top: 185px;
     right: 185px;
     font-size: 4.5rem;
   }
 
   /* ★PC版リンク配置（赤四角の位置）：右側に縦長の四角形として綺麗に固定 */
   .menu-links {
-    /* ★前回の top: 240px / right: 280px から、右上へジャスト移動 */
-    top: 200px; /* 上に40pxアップ */
-    right: 220px; /* 右に60pxキープ（円の丸みに綺麗に沿う位置） */
+    top: 200px;
+    right: 220px;
 
     width: 460px;
     gap: 3.2rem;
@@ -331,7 +308,6 @@ body {
     font-size: 1.55rem;
   }
 
-  /* 左右の最大幅は1280px */
   .main-visual,
   .contents-section {
     max-width: 1280px;
@@ -345,21 +321,17 @@ body {
   .main-visual {
     flex-direction: row;
     justify-content: center;
-    /* ★両端ではなく中央寄りに配置 */
     align-items: center;
     padding-top: 6rem;
     padding-bottom: 6rem;
     gap: 1rem;
-    /* ★ここの数値を小さくすると、さらに文字と画像が近づきます（お好みで4remなどにしてもOKです） */
     text-align: left;
   }
 
   /* 文字エリアが広がりすぎないように最大幅を制限して、右の画像に近づけます */
   .mv-text {
     flex: initial;
-    /* ★幅を自動伸縮から固定的な挙動に変更 */
     width: 500px;
-    /* ★文字エリアの横幅を固定 */
   }
 
   .mv-text h2 {
@@ -377,15 +349,11 @@ body {
     width: 500px;
     height: 350px;
     flex-shrink: 0;
-    /* 画像が勝手に縮まないように固定 */
   }
 
-  /* ★CONTENTSセクション全体の上下の余白をさらに広く（3rem → 7rem に大幅アップ） */
   .contents-section {
     padding-top: 5rem;
-    /* ★CONTENTSの上の余白を広げました */
     padding-bottom: 9rem;
-    /* ★CONTENTSの下の余白を広げました */
   }
 
   /* CONTENTSの見出しと、下のカードコンテナの隙間を広げる */
@@ -409,7 +377,6 @@ body {
   .card {
     flex-direction: column;
     background-color: #eaf7fa;
-    /* 通常時の背景色（薄い水色） */
     border: 2px solid #00449159;
     transition:
       transform 0.3s ease,
@@ -435,7 +402,6 @@ body {
     padding-right: 0;
     line-height: 1.5;
     font-weight: 400;
-    /* ★通常時は細めにしておく */
   }
 
   /* PC版でホバーした時、下半分の水色エリア（.card-body）の背景色だけをふわっと変える */

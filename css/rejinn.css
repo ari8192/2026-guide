@@ -53,7 +53,6 @@ body {
    ========================================================================== */
 .overlay-menu {
   position: fixed;
-  /* ★完全な正円（スマホ用：550px） */
   width: 550px;
   height: 550px;
   border-radius: 50%;
@@ -85,8 +84,8 @@ body {
 /* ★閉じるボタン（×）：画面の右上端（赤×の位置）に固定 */
 .close-btn {
   position: absolute;
-  top: 120px; /* 画面の最上部からの距離を固定 */
-  right: 120px; /* 画面の最右部からの距離を固定 */
+  top: 120px;
+  right: 120px;
   font-size: 3rem;
   font-weight: 300;
   color: #000000;
@@ -98,8 +97,6 @@ body {
 /* ★リンク全体の配置（赤四角の位置）：×ボタンの下にきれいに収める */
 .menu-links {
   position: absolute;
-
-  /* ★少し上に引き上げ、少し右に寄せました */
   top: 150px;
   right: 135px;
 
@@ -191,7 +188,6 @@ body {
 
 .pc-only {
   display: none;
-  /* スマホでは改行しない */
 }
 
 /* 2. 3連ミニギャラリー */
@@ -256,7 +252,9 @@ body {
   font-weight: bold;
 }
 
-/* 4. 下部ナビゲーションボタン */
+/* ==========================================================================
+   ページ下部ナビゲーション
+   ========================================================================== */
 .page-navigation {
   display: flex;
   justify-content: center;
@@ -273,7 +271,6 @@ body {
   border-radius: 20px;
   font-size: 0.9rem;
   font-weight: 400;
-  /* 通常時は細字 */
   text-align: center;
   transition: all 0.3s ease;
 }
@@ -294,7 +291,6 @@ body {
 .nav-btn:hover {
   transform: translateY(-2px);
   font-weight: 700;
-  /* ホバーで太字に */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
@@ -315,34 +311,26 @@ body {
    ========================================================================== */
 @media (min-width: 768px) {
   .overlay-menu {
-    /* ★PC版：完全に歪みのない大きな「正円」に統一 */
     width: 850px;
     height: 850px;
     border-radius: 50%;
-
-    /* ★右上にはみ出させる量を固定 */
     top: -150px;
     right: -150px;
-
-    /* アニメーションの起点をPC用に修正 */
     transform-origin: calc(100% - 150px) 150px;
-
-    /* レイアウトのバグを防ぐため余白設定をクリア */
     padding: 0;
   }
 
-  /* ★PC版閉じるボタン：画面の右上端（赤×のジャスト位置） */
+  /* ★PC版閉じるボタン：画面の右上端 */
   .close-btn {
-    top: 185px; /* 画面の右上角にぴったり綺麗に見える位置 */
+    top: 185px;
     right: 185px;
     font-size: 4.5rem;
   }
 
   /* ★PC版リンク配置（赤四角の位置）：右側に縦長の四角形として綺麗に固定 */
   .menu-links {
-    /* ★前回の top: 240px / right: 280px から、右上へジャスト移動 */
-    top: 200px; /* 上に40pxアップ */
-    right: 220px; /* 右に60pxキープ（円の丸みに綺麗に沿う位置） */
+    top: 200px;
+    right: 220px;
 
     width: 460px;
     gap: 3.2rem;
@@ -357,7 +345,6 @@ body {
     padding: 7rem 2rem 10rem;
     width: 100%;
     max-width: 1260px;
-    /* ★トップページ（1100px）と同じ横幅に揃えます */
     margin: 0 auto;
     gap: 7.5rem;
   }
@@ -365,13 +352,11 @@ body {
   /* 1. メイン解説エリアの画像サイズもPCに合わせて横長に広げる */
   .detail-main-img {
     height: 480px;
-    /* 横幅が広がるので、縦幅も少し高さを出してバランスを取ります */
     margin-bottom: 2.5rem;
   }
 
   .pc-only {
     display: inline;
-    /* PC版のみ改行を生かす */
   }
 
   /* 1. メイン解説エリア */
@@ -392,14 +377,12 @@ body {
 
   /* 2. 3連ミニギャラリー */
   .detail-gallery {
-    /* ★PC版ではさらに間隔を広げます */
     gap: 3rem;
     margin-bottom: 4rem;
     padding: 0;
   }
 
   .gallery-item {
-    /* ★PC版では縮小を解除して本来の大きさに戻します */
     transform: scale(0.95);
   }
 
